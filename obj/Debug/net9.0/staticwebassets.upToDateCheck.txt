@@ -1,5 +1,5 @@
-wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\img\govfinance_logo-trans2.png
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -61,7 +61,7 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\css\site.css
+wwwroot\css\site.css
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\favicon.ico
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\js\site.js
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -123,3 +123,4 @@ C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\lib\jquery\dist\jquery.
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\lib\jquery\dist\jquery.slim.min.js
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\wwwroot\css\site.css

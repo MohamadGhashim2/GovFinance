@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Register";
 
-    // الدور القادم من الاستعلام ?role=Citizen|Admin أو الافتراضي مواطن
     var role = Model.Role ?? Roles.Citizen;
     var isAdmin = string.Equals(role, Roles.Admin, System.StringComparison.OrdinalIgnoreCase);
 }
@@ -71,50 +70,19 @@
                 </div>
             }
 
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">تسجيل الدخول</button>
 
             <div class="mt-3 d-flex gap-2">
-                <a class="btn btn-outline-secondary flex-fill"
-                   asp-controller="Auth" asp-action="ChooseRole">Back to role chooser</a>
+                
                 <a class="btn btn-link flex-fill"
-                   asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" asp-route-role="@role">Already have an account? Log in</a>
+                   asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" asp-route-role="@role">لديك حساب مسبقاً؟سجل الدخول</a>
             </div>
         </form>
     </div>
 
     <div class="col-md-6 offset-md-1">
         <section>
-            <h3>Use another service to register</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div class="text-muted">
-                        No external authentication services configured.
-                        See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article</a>.
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account"
-                          asp-page="./ExternalLogin"
-                          asp-route-returnUrl="@Model.ReturnUrl"
-                          asp-route-role="@role"
-                          method="post" class="form-horizontal">
-                        <p>
-                            @foreach (var provider in Model.ExternalLogins!)
-                            {
-                                <button type="submit"
-                                        class="btn btn-outline-primary me-2 mb-2"
-                                        name="provider" value="@provider.Name"
-                                        title="Register using your @provider.DisplayName account">
-                                    @provider.DisplayName
-                                </button>
-                            }
-                        </p>
-                    </form>
-                }
-            }
+         
         </section>
     </div>
 </div>

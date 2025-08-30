@@ -8,7 +8,7 @@
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-                Hello @User.Identity?.Name!
+                مرحباً @User.Identity?.Name!
             </a>
         </li>
         <li class="nav-item">
@@ -16,17 +16,17 @@
                   asp-area="Identity"
                   asp-page="/Account/Logout"
                   asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="nav-link btn btn-link text-dark">تسجيل الخروج</button>
             </form>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="ChooseRole">Register</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="ChooseRole">انشاء حساب</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">تسجيل دخول</a>
         </li>
     }
 </ul>

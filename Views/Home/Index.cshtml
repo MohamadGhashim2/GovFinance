@@ -1,8 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model GovFinance.Models.ViewModels.HomeIndexVm
+@using GovFinance.Models
+@{
+    ViewData["Title"] = "الصفحة الرئيسية";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center py-4">
+    <h1 class="display-5 fw-bold mb-3">أهلًا بك في نظام التمويل الحكومي</h1>
+    <p class="lead text-muted mb-4">
+        هذا النظام يتيح للمواطنين إدارة <strong>الدخل</strong> و<strong>المصروف</strong> بسهولة،
+        ويمنح الحكومة أدوات لعرض وتحليل بيانات المواطنين بشكل مركزي وآمن.
+    </p>
+
+    @if (User?.Identity?.IsAuthenticated ?? false)
+    {
+        if (Model?.IsAdmin == true)
+        {
+            <a class="btn btn-success btn-lg me-2"
+               asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
+                اذهب إلى لوحة الإدارة
+            </a>
+            <a class="btn btn-outline-secondary btn-lg"
+               asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a>
+        }
+        else if (Model?.IsCitizen == true)
+        {
+            <a class="btn btn-primary btn-lg me-2" asp-controller="MyIncomes" asp-action="Index">مدخولاتي</a>
+            <a class="btn btn-outline-primary btn-lg me-2" asp-controller="MyExpenses" asp-action="Index">مصاريفي</a>
+            <a class="btn btn-outline-secondary btn-lg" asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a>
+        }
+    }
+    else
+    {
+        <a class="btn btn-primary btn-lg me-2" asp-controller="Auth" asp-action="ChooseRole">إنشاء حساب</a>
+        <a class="btn btn-outline-secondary btn-lg" asp-area="Identity" asp-page="/Account/Login">تسجيل الدخول</a>
+    }
+</div>
+
+@if (Model?.IsCitizen == true)
+{
+    <div class="row g-3 my-4 text-center">
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="text-muted">دخل هذا الشهر</div><div class="h3 mb-0">@Model.IncomeMonth.ToString("N2")</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="text-muted">مصروف هذا الشهر</div><div class="h3 mb-2">@Model.ExpenseMonth.ToString("N2")</div>
+                    <div class="progress" style="height:8px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width:@Model.ExpensePercent%"></div>
+                    </div>
+                    <small class="text-muted d-block mt-1">@Model.ExpensePercent% من الدخل</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <div class="text-muted">المتبقي</div><div class="h3 mb-0">@Model.BalanceMonth.ToString("N2")</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<hr class="my-4" />
+
+<div class="row g-3 text-center">
+    <div class="col-12 col-md-4">
+        <div class="p-3">
+            <h5 class="fw-semibold mb-1">للمواطن</h5>
+            <p class="text-muted mb-0">سجّل دخلك ومصاريفك، وتابع ملخصات شهرية وسنوية بسهولة.</p>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="p-3">
+            <h5 class="fw-semibold mb-1">للحكومة</h5>
+            <p class="text-muted mb-0">استعرض بيانات المواطنين مع فلاتر وتصدير CSV وتقارير.</p>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="p-3">
+            <h5 class="fw-semibold mb-1">أمان وخصوصية</h5>
+            <p class="text-muted mb-0">صلاحيات دقيقة وتسجيل دخول آمن.</p>
+        </div>
+    </div>
 </div>

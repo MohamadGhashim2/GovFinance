@@ -1,21 +1,42 @@
 ﻿<!DOCTYPE html>
 @using GovFinance.Models
+@using System.Reflection
+@inject IWebHostEnvironment Env
+@{
+    var ver = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+}
 
-<html lang="en">
+<html lang="ar" dir="rtl" data-bs-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GovFinance</title>
+    <script>
+        (function () {
+          try {
+            var stored = localStorage.getItem('theme');
+            var theme = stored ? stored :
+              (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-bs-theme', theme);
+          } catch(e) {}
+        })();
+    </script> 
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GovFinance.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GovFinance</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/img/govfinance_logo-trans2.png" alt="GovFinance" class="brand-logo" />
+					
+                    <span class="visually-hidden">GovFinance</span>
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,10 +44,7 @@
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <!-- عام للجميع -->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                       
 
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
@@ -70,34 +88,66 @@
                             }
                         }
 
-                        <!-- عام للجميع -->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        
                     </ul>
-
-                    <partial name="_LoginPartial" />
+                    <div class="d-flex align-items-center gap-2">
+                        <button id="themeToggle" type="button" class="btn btn-sm btn-outline-secondary" title="تبديل الوضع">🌙</button>
+                        <partial name="_LoginPartial" />
+                    </div>
+                    
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container my-4">
+        <div class="content-card content-halo p-md-4 main-wrap">
             @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - GovFinance -
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer bg-white text-muted">
+        <div class="container py-3 small">
+            <div class="row align-items-center g-2">
+                <div class="col-md">
+                    <span>&copy; @DateTime.UtcNow.Year وزارة المالية — جميع الحقوق محفوظة.</span>
+                    <span class="mx-1">|</span>
+                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
+                    <span class="mx-1">•</span>
+                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Terms">شروط الاستخدام</a>
+                    <span class="mx-1">•</span>
+                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Accessibility">سياسة الوصول الرقمي</a>
+                    <span class="mx-1">•</span>
+                    <a class="link-secondary" href="mailto:support@gov.local">تواصل معنا</a>
+                </div>
+
+                <div class="col-md-auto text-md-start">
+                    <span>الإصدار @ver</span>
+                    <span class="mx-1">•</span>
+                    <span>@Env.EnvironmentName</span>
+                </div>
+            </div>
+
+            
         </div>
     </footer>
+
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @if (TempData["Toast"] is string msg)
+    {
+        <div class="toast align-items-center text-bg-success border-0 position-fixed bottom-0 start-0 m-3 show" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">@msg</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    }
+
 </body>
 </html>

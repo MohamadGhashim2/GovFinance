@@ -3,18 +3,18 @@
     ViewData["Title"] = "اختر نوع الحساب";
 }
 
-<div class="d-flex vh-100">
-    <div class="m-auto text-center" style="max-width:480px;">
+<div class="hero-center text-center">
+    <div style="max-width:480px;">
         <h2 class="mb-4">اختر نوع الحساب</h2>
 
-        <div class="row g-3">
-            <div class="col-12 col-md-6">
+        <div class="row g-3 justify-content-center">
+            <div class="col-12 col-md-5">
                 <a class="btn btn-lg btn-primary w-100"
                    href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Citizen })">
                     مواطن
                 </a>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-5">
                 <a class="btn btn-lg btn-outline-danger w-100"
                    href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Admin })">
                     حكومة
