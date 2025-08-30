@@ -50,27 +50,47 @@ app.UseRouting();
 
 // مهم قبل التفويض
 app.UseAuthentication();
-app.UseAuthorization();
-// يضيف دور Citizen تلقائيًا لكل مستخدم مسجّل ليس Admin
-app.Use(async (context, next) =>
-{
-    if (context.User?.Identity?.IsAuthenticated == true)
-    {
-        var userManager = context.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
-        var user = await userManager.GetUserAsync(context.User);
-        if (user != null)
-        {
-            var isAdmin = await userManager.IsInRoleAsync(user, Roles.Admin);
-            var isCitizen = await userManager.IsInRoleAsync(user, Roles.Citizen);
 
-            if (!isAdmin && !isCitizen)
+// ✅ "شبكة أمان" للتطوير فقط – قبل UseAuthorization
+if (app.Environment.IsDevelopment())
+{
+    app.Use(async (context, next) =>
+    {
+        if (context.User?.Identity?.IsAuthenticated == true)
+        {
+            var userManager = context.RequestServices.GetRequiredService<UserManager<ApplicationUser>>();
+            var signInManager = context.RequestServices.GetRequiredService<SignInManager<ApplicationUser>>();
+            var db = context.RequestServices.GetRequiredService<ApplicationDbContext>();
+
+            var user = await userManager.GetUserAsync(context.User);
+            if (user != null)
             {
-                await userManager.AddToRoleAsync(user, Roles.Citizen);
+                var roles = await userManager.GetRolesAsync(user);
+                if (roles == null || roles.Count == 0)
+                {
+                    await userManager.AddToRoleAsync(user, Roles.Citizen);
+                    await signInManager.RefreshSignInAsync(user);
+                }
+
+                var isAdmin = await userManager.IsInRoleAsync(user, Roles.Admin);
+                if (!isAdmin)
+                {
+                    var hasCitizen = await db.Citizens.AnyAsync(c => c.ApplicationUserId == user.Id);
+                    if (!hasCitizen)
+                    {
+                        var tmpNid = ("N" + user.Id.Replace("-", "")).PadRight(11, '0').Substring(0, 11);
+                        var fallbackName = user.Email?.Split('@').FirstOrDefault() ?? "Citizen";
+                        db.Citizens.Add(new Citizen { ApplicationUserId = user.Id, NationalId = tmpNid, FullName = fallbackName });
+                        await db.SaveChangesAsync();
+                    }
+                }
             }
         }
-    }
-    await next();
-});
+        await next();
+    });
+}
+
+app.UseAuthorization();
 
 
 // لدعم أصول الستاتيك القادمة من مشاريع/حزم أخرى (.WithStaticAssets)
