@@ -1,6 +1,7 @@
-﻿@model GovFinance.Models.Expense
+﻿@model GovFinance.Models.Income
+
 @{
-    ViewData["Title"] = "Edit Expense";
+    ViewData["Title"] = "Edit Income";
 }
 
 <h1>Edit</h1>
@@ -20,9 +21,9 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="Category" class="control-label"></label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
+                <label asp-for="Source" class="control-label"></label>
+                <input asp-for="Source" class="form-control" />
+                <span asp-validation-for="Source" class="text-danger"></span>
             </div>
 
             <div class="form-group">

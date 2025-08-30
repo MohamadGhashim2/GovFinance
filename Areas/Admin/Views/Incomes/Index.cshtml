@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GovFinance.Models.Income>
+@{
+    ViewData["Title"] = "كل الدخل";
+    decimal total = ViewBag.Total ?? 0m;
+    string start = ViewBag.Start ?? "";
+    string end = ViewBag.End ?? "";
+    string q = ViewBag.Q ?? "";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <label class="form-label">من تاريخ</label>
+        <input type="date" name="start" value="@start" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label class="form-label">إلى تاريخ</label>
+        <input type="date" name="end" value="@end" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label class="form-label">بحث (اسم/رقم وطني/إيميل)</label>
+        <input type="text" name="q" value="@q" class="form-control" placeholder="Full name / NationalId / Email" />
+    </div>
+    <div class="col-auto align-self-end">
+        <button class="btn btn-primary">تصفية</button>
+        <a class="btn btn-outline-secondary" href="@Url.Action("Index")">إعادة ضبط</a>
+        <a class="btn btn-success" href="@Url.Action("ExportCsv", new { start, end, q })">تصدير CSV</a>
+    </div>
+</form>
+
+<div class="alert alert-info">إجمالي المبالغ: <strong>@total.ToString("0.00")</strong></div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>NationalId</th>
+            <th>FullName</th>
+            <th>Email</th>
+            <th>Amount</th>
+            <th>Source</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Date.ToString("yyyy-MM-dd")</td>
+                <td>@i.Citizen?.NationalId</td>
+                <td>@i.Citizen?.FullName</td>
+                <td>@i.Citizen?.ApplicationUser?.Email</td>
+                <td>@i.Amount.ToString("0.00")</td>
+                <td>@i.Source</td>
+                <td>@i.Notes</td>
+            </tr>
+        }
+    </tbody>
+</table>

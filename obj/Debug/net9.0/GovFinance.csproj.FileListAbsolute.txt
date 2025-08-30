@@ -409,3 +409,4 @@ C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\ru\Microsoft.C
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\GovFinance.sourcelink.json

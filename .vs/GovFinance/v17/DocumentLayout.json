@@ -3,36 +3,112 @@
   "WorkspaceRootPath": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\controllers\\myexpensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:controllers\\myexpensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\models\\income.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:models\\income.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\models\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:models\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\citizens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\citizens\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\controllers\\citizenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\controllers\\citizenscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\citizens\\ledger.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\citizens\\ledger.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\models\\viewmodels\\admincitizenledgervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:models\\viewmodels\\admincitizenledgervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\controllers\\myexpensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:controllers\\myexpensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\expenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\expenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\controllers\\expensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\controllers\\expensescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\incomes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\incomes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\controllers\\incomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\controllers\\incomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\models\\income.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:models\\income.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\controllers\\myincomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:controllers\\myincomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myincomes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myincomes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myincomes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myincomes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myexpenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myexpenses\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\myincomes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\myincomes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\models\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:models\\expense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\migrations\\20250829123444_domain_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,22 +121,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\controllers\\incomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\controllers\\incomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\controllers\\myincomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:controllers\\myincomescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|solutionrelative:areas\\admin\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC8A59E1-4030-4446-A522-B42D701566F7}|GovFinance.csproj|c:\\users\\mostafa ghashim\\source\\repos\\govfinance\\areas\\admin\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,6 +159,328 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:20:15.502Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:19:56.464Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Citizens\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Citizens\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Citizens\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Citizens\\Index.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:14:56.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AdminCitizenLedgerVm.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\ViewModels\\AdminCitizenLedgerVm.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\AdminCitizenLedgerVm.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\ViewModels\\AdminCitizenLedgerVm.cs",
+              "RelativeToolTip": "Models\\ViewModels\\AdminCitizenLedgerVm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T11:13:05.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Incomes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Incomes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Incomes\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Incomes\\Index.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAkwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:07:00.335Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyIncomes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Index.cshtml",
+              "RelativeToolTip": "Views\\MyIncomes\\Index.cshtml",
+              "ViewState": "AgIAACwAAAAAAAAAAAAiwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T10:15:19.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MyExpensesController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyExpensesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MyExpensesController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyExpensesController.cs",
+              "RelativeToolTip": "Controllers\\MyExpensesController.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAkwGoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:53:13.388Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "MyIncomesController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyIncomesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MyIncomesController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyIncomesController.cs",
+              "RelativeToolTip": "Controllers\\MyIncomesController.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAYwHQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:51:30.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "_LoginPartial.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_LoginPartial.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_LoginPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_LoginPartial.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-29T12:47:40.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-29T18:05:47.939Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Ledger.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Citizens\\Ledger.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Citizens\\Ledger.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Citizens\\Ledger.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Citizens\\Ledger.cshtml",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAiwGoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:14:23.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CitizensController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\CitizensController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CitizensController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\CitizensController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\CitizensController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:53:50.142Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ExpensesController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\ExpensesController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ExpensesController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\ExpensesController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\ExpensesController.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAkwGwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T11:07:24.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DashboardController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:44:26.748Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Expenses\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Expenses\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Expenses\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Expenses\\Index.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAiwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T11:07:52.4Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAGcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:23:22.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-29T12:45:37.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyExpenses\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Edit.cshtml",
+              "RelativeToolTip": "Views\\MyExpenses\\Edit.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T10:25:02.785Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Expense.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Expense.cs",
+              "RelativeDocumentMoniker": "Models\\Expense.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Expense.cs",
+              "RelativeToolTip": "Models\\Expense.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:32:06.749Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Income.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Income.cs",
+              "RelativeDocumentMoniker": "Models\\Income.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Income.cs",
+              "RelativeToolTip": "Models\\Income.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAwwA4AAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:31:51.566Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IncomesController.cs",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\IncomesController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\IncomesController.cs",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\IncomesController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\IncomesController.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAYwFMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:54:15.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Delete.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyExpenses\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Delete.cshtml",
+              "RelativeToolTip": "Views\\MyExpenses\\Delete.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T10:25:51.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyIncomes\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Edit.cshtml",
+              "RelativeToolTip": "Views\\MyIncomes\\Edit.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAiwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T10:25:57.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyExpenses\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Details.cshtml",
+              "RelativeToolTip": "Views\\MyExpenses\\Details.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-30T10:25:02.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-29T12:48:37.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Create.cshtml",
               "RelativeDocumentMoniker": "Views\\MyExpenses\\Create.cshtml",
@@ -111,150 +493,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CitizensController.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\CitizensController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CitizensController.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\CitizensController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\CitizensController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAqwD4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:53:50.142Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MyExpensesController.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyExpensesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MyExpensesController.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyExpensesController.cs",
-              "RelativeToolTip": "Controllers\\MyExpensesController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAiwEUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:53:13.388Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MyIncomesController.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyIncomesController.cs",
-              "RelativeDocumentMoniker": "Controllers\\MyIncomesController.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Controllers\\MyIncomesController.cs",
-              "RelativeToolTip": "Controllers\\MyIncomesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:51:30.442Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_LoginPartial.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_LoginPartial.cshtml",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_LoginPartial.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_LoginPartial.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 23,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\MyIncomes\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyIncomes\\Create.cshtml",
+              "RelativeToolTip": "Views\\MyIncomes\\Create.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-29T12:47:40.132Z",
+              "WhenOpened": "2025-08-30T10:15:10.009Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DashboardController.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\DashboardController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DashboardController.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\DashboardController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\DashboardController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:44:26.748Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAqwEkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:23:22.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Expense.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Expense.cs",
-              "RelativeDocumentMoniker": "Models\\Expense.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Expense.cs",
-              "RelativeToolTip": "Models\\Expense.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAA1wBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:32:06.749Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Income.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Income.cs",
-              "RelativeDocumentMoniker": "Models\\Income.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Income.cs",
-              "RelativeToolTip": "Models\\Income.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:31:51.566Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 22,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\MyExpenses\\Index.cshtml",
               "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\MyExpenses\\Index.cshtml",
               "RelativeToolTip": "Views\\MyExpenses\\Index.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAiwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-08-29T18:05:39.467Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IncomesController.cs",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\IncomesController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\IncomesController.cs",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Controllers\\IncomesController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\IncomesController.cs",
+              "DocumentIndex": 25,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:54:15.022Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-29T18:05:47.939Z",
+              "WhenOpened": "2025-08-30T10:18:25.946Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 27,
               "Title": "20250829123444_Domain_v1.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Migrations\\20250829123444_Domain_v1.cs",
               "RelativeDocumentMoniker": "Migrations\\20250829123444_Domain_v1.cs",
@@ -262,12 +540,11 @@
               "RelativeToolTip": "Migrations\\20250829123444_Domain_v1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:34:44.185Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:34:44.185Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 28,
               "Title": "20250829122852_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Migrations\\20250829122852_InitialCreate.cs",
               "RelativeDocumentMoniker": "Migrations\\20250829122852_InitialCreate.cs",
@@ -275,25 +552,11 @@
               "RelativeToolTip": "Migrations\\20250829122852_InitialCreate.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:28:52.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:28:52.678Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Dashboard\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-29T12:45:37.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
@@ -301,12 +564,11 @@
               "RelativeToolTip": "Data\\ApplicationDbContext.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAqwDMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:32:30.97Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:32:30.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "Roles.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Roles.cs",
               "RelativeDocumentMoniker": "Models\\Roles.cs",
@@ -314,12 +576,11 @@
               "RelativeToolTip": "Models\\Roles.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:32:19.332Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:32:19.332Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "Citizen.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\Citizen.cs",
               "RelativeDocumentMoniker": "Models\\Citizen.cs",
@@ -327,25 +588,11 @@
               "RelativeToolTip": "Models\\Citizen.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAowB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:31:28.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:31:28.925Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-29T12:48:37.795Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Models\\ApplicationUser.cs",
@@ -353,12 +600,11 @@
               "RelativeToolTip": "Models\\ApplicationUser.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T12:30:38.317Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:30:38.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Mostafa Ghashim\\source\\repos\\GovFinance\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -366,8 +612,7 @@
               "RelativeToolTip": "appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABrAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-08-29T12:23:23.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T12:23:23.389Z"
             }
           ]
         }

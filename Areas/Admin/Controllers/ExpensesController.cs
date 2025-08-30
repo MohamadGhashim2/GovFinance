@@ -10,37 +10,36 @@ namespace GovFinance.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = Roles.Admin)]
-    public class IncomesController : Controller
+    public class ExpensesController : Controller
     {
         private readonly ApplicationDbContext _db;
-        public IncomesController(ApplicationDbContext db) => _db = db;
+        public ExpensesController(ApplicationDbContext db) => _db = db;
 
-        // GET: Admin/Incomes
         public async Task<IActionResult> Index(DateOnly? start, DateOnly? end, string? q)
         {
-            var query = _db.Incomes
-                .Include(i => i.Citizen)
+            var query = _db.Expenses
+                .Include(e => e.Citizen)
                 .ThenInclude(c => c.ApplicationUser)
                 .AsNoTracking()
                 .AsQueryable();
 
             if (start.HasValue)
-                query = query.Where(i => i.Date >= start.Value);
+                query = query.Where(e => e.Date >= start.Value);
             if (end.HasValue)
-                query = query.Where(i => i.Date <= end.Value);
+                query = query.Where(e => e.Date <= end.Value);
 
             if (!string.IsNullOrWhiteSpace(q))
             {
                 q = q.Trim();
-                query = query.Where(i =>
-                    (i.Citizen.FullName != null && EF.Functions.Like(i.Citizen.FullName, $"%{q}%")) ||
-                    (i.Citizen.NationalId != null && EF.Functions.Like(i.Citizen.NationalId, $"%{q}%")) ||
-                    (i.Citizen.ApplicationUser.Email != null && EF.Functions.Like(i.Citizen.ApplicationUser.Email, $"%{q}%"))
+                query = query.Where(e =>
+                    (e.Citizen.FullName != null && EF.Functions.Like(e.Citizen.FullName, $"%{q}%")) ||
+                    (e.Citizen.NationalId != null && EF.Functions.Like(e.Citizen.NationalId, $"%{q}%")) ||
+                    (e.Citizen.ApplicationUser.Email != null && EF.Functions.Like(e.Citizen.ApplicationUser.Email, $"%{q}%"))
                 );
             }
 
             var items = await query
-                .OrderByDescending(i => i.Date).ThenBy(i => i.Id)
+                .OrderByDescending(e => e.Date).ThenBy(e => e.Id)
                 .ToListAsync();
 
             ViewBag.Start = start?.ToString("yyyy-MM-dd");
@@ -51,52 +50,51 @@ namespace GovFinance.Areas.Admin.Controllers
             return View(items);
         }
 
-        // GET: Admin/Incomes/ExportCsv
         public async Task<IActionResult> ExportCsv(DateOnly? start, DateOnly? end, string? q)
         {
-            var query = _db.Incomes
-                .Include(i => i.Citizen)
+            var query = _db.Expenses
+                .Include(e => e.Citizen)
                 .ThenInclude(c => c.ApplicationUser)
                 .AsNoTracking()
                 .AsQueryable();
 
             if (start.HasValue)
-                query = query.Where(i => i.Date >= start.Value);
+                query = query.Where(e => e.Date >= start.Value);
             if (end.HasValue)
-                query = query.Where(i => i.Date <= end.Value);
+                query = query.Where(e => e.Date <= end.Value);
             if (!string.IsNullOrWhiteSpace(q))
             {
                 q = q.Trim();
-                query = query.Where(i =>
-                    (i.Citizen.FullName != null && EF.Functions.Like(i.Citizen.FullName, $"%{q}%")) ||
-                    (i.Citizen.NationalId != null && EF.Functions.Like(i.Citizen.NationalId, $"%{q}%")) ||
-                    (i.Citizen.ApplicationUser.Email != null && EF.Functions.Like(i.Citizen.ApplicationUser.Email, $"%{q}%"))
+                query = query.Where(e =>
+                    (e.Citizen.FullName != null && EF.Functions.Like(e.Citizen.FullName, $"%{q}%")) ||
+                    (e.Citizen.NationalId != null && EF.Functions.Like(e.Citizen.NationalId, $"%{q}%")) ||
+                    (e.Citizen.ApplicationUser.Email != null && EF.Functions.Like(e.Citizen.ApplicationUser.Email, $"%{q}%"))
                 );
             }
 
             var items = await query
-                .OrderBy(i => i.Date).ThenBy(i => i.Id)
+                .OrderBy(e => e.Date).ThenBy(e => e.Id)
                 .ToListAsync();
 
             var sb = new StringBuilder();
-            sb.AppendLine("Date,NationalId,FullName,Email,Amount,Source,Notes");
-            foreach (var i in items)
+            sb.AppendLine("Date,NationalId,FullName,Email,Amount,Category,Notes");
+            foreach (var e in items)
             {
                 var line = string.Join(",", new[]
                 {
-                    i.Date.ToString("yyyy-MM-dd"),
-                    Csv(i.Citizen?.NationalId),
-                    Csv(i.Citizen?.FullName),
-                    Csv(i.Citizen?.ApplicationUser?.Email),
-                    i.Amount.ToString(CultureInfo.InvariantCulture),
-                    Csv(i.Source),
-                    Csv(i.Notes)
+                    e.Date.ToString("yyyy-MM-dd"),
+                    Csv(e.Citizen?.NationalId),
+                    Csv(e.Citizen?.FullName),
+                    Csv(e.Citizen?.ApplicationUser?.Email),
+                    e.Amount.ToString(CultureInfo.InvariantCulture),
+                    Csv(e.Category),
+                    Csv(e.Notes)
                 });
                 sb.AppendLine(line);
             }
 
             var bytes = Encoding.UTF8.GetBytes(sb.ToString());
-            var fileName = $"incomes_{DateTime.Now:yyyyMMddHHmmss}.csv";
+            var fileName = $"expenses_{DateTime.Now:yyyyMMddHHmmss}.csv";
             return File(bytes, "text/csv", fileName);
         }
 
