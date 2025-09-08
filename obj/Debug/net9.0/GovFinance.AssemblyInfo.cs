@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GovFinance")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d825b6c33be90994ed9298c200cad198aad7575")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d436fea42d1b99293179701f8739e21ab5ecb5a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("GovFinance")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GovFinance")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

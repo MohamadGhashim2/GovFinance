@@ -1,3 +1,14 @@
+
+:root {
+    --brand-bg: springgreen; /* خلفية الصفحة في الوضع الفاتح */
+    --brand-green: springgreen; /* لون الزر الأساسي */
+    --brand-green-2: #00e874; /* لون الهوفر */
+    --text-color: #212529;
+    --card-bg: #fff;
+    --card-border: rgba(0,0,0,.08);
+}
+
+
 /* ===== أساسيات ===== */
 html {
     font-size: 15px;
@@ -5,10 +16,16 @@ html {
     min-height: 100%;
 }
 
+/* ضمان وضوح النص في اللوحة الجانبية عند الخلفية الخضراء */
 @media (min-width: 768px) {
-    html {
-        font-size: 16px;
+    .text-white a {
+        color: #fff;
+        text-decoration: underline;
     }
+
+        .text-white a:hover {
+            text-decoration: none;
+        }
 }
 
 body {
@@ -16,7 +33,7 @@ body {
     font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
-/* focus ring بلون العلامة */
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem var(--brand-green);
 }
@@ -33,18 +50,8 @@ body {
     text-align: start;
 }
 
-/* ===== ثيمين: فاتح/داكن ===== */
-:root {
-    --brand-bg: springgreen; /* خلفية الصفحة في الوضع الفاتح */
-    --brand-green: springgreen; /* لون الزر الأساسي */
-    --brand-green-2: #00e874; /* لون الهوفر */
-    --text-color: #212529;
-    --card-bg: #fff;
-    --card-border: rgba(0,0,0,.08);
-}
-
 [data-bs-theme="dark"] {
-    --brand-bg: #0b3d2e; /* خلفية داكنة مائلة للأخضر */
+    --brand-bg: #0b3d2e; 
     --brand-green: #16d86e;
     --brand-green-2: #12c25f;
     --text-color: #e9ecef;
@@ -71,7 +78,7 @@ body, .content-card, .navbar, footer.footer {
     box-shadow: 0 .75rem 2rem rgba(0,0,0,.08), 0 .125rem .5rem rgba(0,0,0,.05);
 }
 
-/* لو محتاج تتمدد الصفحة بشكل مُريح */
+
 .main-wrap {
     min-height: calc(100vh - 160px);
 }
@@ -116,7 +123,7 @@ body, .content-card, .navbar, footer.footer {
     --bs-btn-active-border-color: var(--brand-green-2);
 }
 
-/* زر outline بنفس السمة (اختياري) */
+
 .btn-outline-primary {
     --bs-btn-color: var(--brand-green);
     --bs-btn-border-color: var(--brand-green);
@@ -134,7 +141,7 @@ body, .content-card, .navbar, footer.footer {
     padding: 2rem 0;
 }
 
-/* ===== زجاجي + هالة (خيارات جمالية) ===== */
+
 .content-glass {
     background: rgba(255,255,255,.92); /* شبه شفاف */
     border-radius: 1rem;
@@ -150,7 +157,7 @@ body, .content-card, .navbar, footer.footer {
     }
 }
 
-/* هالة ناعمة حول الكارد */
+
 .content-halo {
     position: relative;
 }
@@ -165,7 +172,7 @@ body, .content-card, .navbar, footer.footer {
         filter: blur(12px);
     }
 
-/* ثيم الـNavbar مبني على متغيّرات Bootstrap */
+
 .navbar {
     background: var(--card-bg) !important;
     color: var(--text-color);
@@ -178,7 +185,7 @@ body, .content-card, .navbar, footer.footer {
     --bs-navbar-toggler-border-color: var(--card-border);
 }
 
-    /* تأكيد التطبيق (في بعض الثيمات تحتاج !important) */
+
     .navbar .navbar-brand,
     .navbar .nav-link {
         color: var(--bs-navbar-color) !important;
@@ -189,7 +196,7 @@ body, .content-card, .navbar, footer.footer {
             color: var(--bs-navbar-hover-color) !important;
         }
 
-/* لون أيقونة التبديل (الهمبرغر) حسب الثيم */
+
 [data-bs-theme="light"] .navbar {
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(33,37,41,0.85)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }

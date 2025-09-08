@@ -13,31 +13,31 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Citizen)
+           اسم المواطن
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Citizen.ApplicationUserId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Amount)
+            المبلغ
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Amount)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Source)
+           مصدر الدخل
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Source)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
+           التاريخ
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Date)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Notes)
+            ملاحظات
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Notes)
@@ -47,6 +47,6 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">العودة إلى القائمة</a>
     </form>
 </div>

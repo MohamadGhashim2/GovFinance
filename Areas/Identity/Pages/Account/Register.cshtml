@@ -2,88 +2,135 @@
 @model RegisterModel
 @using GovFinance.Models
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "إنشاء حساب";
+    Layout = "/Views/Shared/_Layout.cshtml";
 
+    // الدور القادم من الاستعلام ?role=Citizen|Admin أو الافتراضي مواطن
     var role = Model.Role ?? Roles.Citizen;
     var isAdmin = string.Equals(role, Roles.Admin, System.StringComparison.OrdinalIgnoreCase);
 }
 
-<h1 class="mb-3">@ViewData["Title"]</h1>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+            <div class="content-card content-halo p-0 overflow-hidden">
 
-<div class="row">
-    <div class="col-md-5">
-        <form id="registerForm"
-              method="post"
-              asp-route-returnUrl="@Model.ReturnUrl"
-              asp-route-role="@role"
-              asp-antiforgery="true">
+                <div class="row g-0">
+                    <!-- لوحة جانبية معلوماتية -->
+                    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center text-center text-white"
+                         style="background:
+                                radial-gradient(80% 60% at 50% 30%, rgba(255,255,255,.22), rgba(255,255,255,0) 70%),
+                                linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02)),
+                                var(--brand-bg); padding:3rem;">
+                        <div style="max-width: 380px;">
+                            <img src="~/img/govfinance_logo-trans2.png" style="width:250px; height:auto" alt="GovFinance" class="brand-logo mb-3" />
+                            <div class="mb-2">
+                                <span class="badge @(isAdmin ? "bg-danger" : "bg-primary")">
+                                    @(isAdmin ? "حكومة (Admin)" : "مواطن (Citizen)")
+                                </span>
+                            </div>
+                            <h2 class="fw-bold mb-2">إنشاء حساب جديد</h2>
+                            <p class="mb-3">
+                                اخترت التسجيل كـ <strong>@(isAdmin ? "حكومة" : "مواطن")</strong>.
+                                يمكنك تغيير الاختيار لاحقًا من شاشة اختيار الدور.
+                            </p>
+                            <p class="small mb-0 opacity-75">
+                                بعد إنشاء الحساب، سيتم توجيهك تلقائيًا للواجهة المناسبة حسب الدور.
+                            </p>
+                        </div>
+                    </div>
 
-            <div class="mb-2">
-                <span class="badge @(isAdmin ? "bg-danger" : "bg-primary")">
-                    @(isAdmin ? "Admin (Government)" : "Citizen")
-                </span>
+                    <!-- نموذج التسجيل -->
+                    <div class="col-12 col-md-6 p-4 p-md-5">
+                        <h3 class="mb-3">تعبئة بيانات الحساب</h3>
+
+                        <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+
+                        <form id="registerForm"
+                              method="post"
+                              asp-route-returnUrl="@Model.ReturnUrl"
+                              asp-route-role="@role"
+                              asp-antiforgery="true">
+
+                            <!-- نحفظ الدور المختار داخل الطلب -->
+                            <input type="hidden" asp-for="Role" value="@role" />
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Email" class="form-control"
+                                       autocomplete="username"  />
+                                <label asp-for="Input.Email">البريد الإلكتروني</label>
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.Password" class="form-control" type="password"
+                                       autocomplete="new-password" />
+                                <label asp-for="Input.Password">كلمة المرور</label>
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input asp-for="Input.ConfirmPassword" class="form-control" type="password"
+                                       autocomplete="new-password"  />
+                                <label asp-for="Input.ConfirmPassword">تأكيد كلمة المرور</label>
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            @* يظهر فقط عند التسجيل كحكومة *@
+                            @if (isAdmin)
+                            {
+                                <div class="mb-3">
+                                    <label asp-for="Input.AdminInviteCode" class="form-label">رمز دعوة الإدارة</label>
+                                    <input asp-for="Input.AdminInviteCode" class="form-control" placeholder="أدخل رمز الإدارة" />
+                                    <div class="form-text">اطلب هذا الرمز من مسؤول النظام.</div>
+                                    <span asp-validation-for="Input.AdminInviteCode" class="text-danger"></span>
+                                </div>
+                            }
+
+                            <button id="registerSubmit" type="submit" class="btn btn-primary w-100 mb-3">
+                                إنشاء الحساب
+                            </button>
+
+                            <div class="d-flex flex-column flex-md-row gap-2 justify-content-between">
+                                <a class="btn btn-outline-secondary flex-fill"
+                                   asp-area="" asp-controller="Auth" asp-action="ChooseRole">
+                                    الرجوع لاختيار الدور
+                                </a>
+                                <a class="btn btn-link flex-fill text-md-end"
+                                   asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" asp-route-role="@role">
+                                    لدي حساب بالفعل — تسجيل الدخول
+                                </a>
+                            </div>
+                        </form>
+
+                        @* تسجيل عبر خدمات خارجية إن كانت مفعّلة *@
+                        @if ((Model.ExternalLogins?.Count ?? 0) > 0)
+                        {
+                            <hr class="my-4" />
+                            <div>
+                                <div class="text-center mb-2 small text-muted">أو سجّل عبر خدمة خارجية</div>
+                                <form id="external-account"
+                                      asp-page="./ExternalLogin"
+                                      asp-route-returnUrl="@Model.ReturnUrl"
+                                      asp-route-role="@role"
+                                      method="post">
+                                    <div class="d-grid gap-2">
+                                        @foreach (var provider in Model.ExternalLogins!)
+                                        {
+                                            <button type="submit" class="btn btn-outline-primary"
+                                                    name="provider" value="@provider.Name"
+                                                    title="Register using your @provider.DisplayName account">
+                                                @provider.DisplayName
+                                            </button>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div> <!-- /row -->
             </div>
-
-            <!-- نحفظ الدور المختار داخل الطلب -->
-            <input type="hidden" asp-for="Role" value="@role" />
-
-            <hr />
-            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
-
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email"
-                       class="form-control"
-                       autocomplete="username"
-                       placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password"
-                       class="form-control"
-                       type="password"
-                       autocomplete="new-password"
-                       placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword"
-                       class="form-control"
-                       type="password"
-                       autocomplete="new-password"
-                       placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-
-            @* يظهر فقط عند التسجيل كحكومة *@
-            @if (isAdmin)
-            {
-                <div class="mb-3">
-                    <label asp-for="Input.AdminInviteCode" class="form-label">Admin invite code</label>
-                    <input asp-for="Input.AdminInviteCode" class="form-control" placeholder="Enter admin code" />
-                    <div class="form-text">اطلب هذا الرمز من مسؤول النظام.</div>
-                    <span asp-validation-for="Input.AdminInviteCode" class="text-danger"></span>
-                </div>
-            }
-
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">تسجيل الدخول</button>
-
-            <div class="mt-3 d-flex gap-2">
-                
-                <a class="btn btn-link flex-fill"
-                   asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" asp-route-role="@role">لديك حساب مسبقاً؟سجل الدخول</a>
-            </div>
-        </form>
-    </div>
-
-    <div class="col-md-6 offset-md-1">
-        <section>
-         
-        </section>
+        </div>
     </div>
 </div>
 

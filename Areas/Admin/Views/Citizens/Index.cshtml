@@ -6,9 +6,6 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>
-    <a class="btn btn-primary" asp-area="Admin" asp-controller="Citizens" asp-action="Create">إضافة مواطن</a>
-</p>
 
 <table class="table table-striped">
     <thead>
@@ -16,8 +13,8 @@
             <th>الرقم الوطني</th>
             <th>الاسم الكامل</th>
             <th>البريد الإلكتروني</th>
-            <th>تاريخ الميلاد</th>
-            <th>العنوان</th>
+          
+
             <th style="width: 260px;">إجراءات</th>
         </tr>
     </thead>
@@ -28,8 +25,8 @@
                 <td>@c.NationalId</td>
                 <td>@c.FullName</td>
                 <td>@c.ApplicationUser?.Email</td>
-                <td>@(c.BirthDate.HasValue? c.BirthDate.Value.ToString("yyyy-MM-dd") : "—")</td>
-                <td>@c.Address</td>
+           
+ 
                 <td>
                     <a class="btn btn-sm btn-outline-primary"
                        asp-area="Admin" asp-controller="Citizens" asp-action="Ledger"

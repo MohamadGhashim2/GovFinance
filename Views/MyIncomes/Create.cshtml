@@ -13,32 +13,32 @@
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group">
-        <label asp-for="Amount" class="control-label"></label>
+        <label asp-for="Amount" class="control-label">المبلغ</label>
         <input asp-for="Amount" class="form-control" type="number" step="0.01" />
         <span asp-validation-for="Amount" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Source" class="control-label"></label>
+        <label asp-for="Source" class="control-label">مصدر الدخل</label>
         <input asp-for="Source" class="form-control" />
         <span asp-validation-for="Source" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Date" class="control-label"></label>
+        <label asp-for="Date" class="control-label">التاريخ</label>
         <input asp-for="Date" class="form-control" type="date" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </div>
 
     <div class="form-group">
-        <label asp-for="Notes" class="control-label"></label>
+        <label asp-for="Notes" class="control-label">ملاحظات</label>
         <input asp-for="Notes" class="form-control" />
         <span asp-validation-for="Notes" class="text-danger"></span>
     </div>
 
     <div class="form-group mt-2">
-        <button type="submit" class="btn btn-primary">Create</button>
-        <a asp-action="Index" class="btn btn-secondary ms-2">Back to List</a>
+        <button type="submit" class="btn btn-primary">إضافة</button>
+        <a asp-action="Index" class="btn btn-secondary ms-2">العودة إلى القائمة</a>
     </div>
 </form>
 

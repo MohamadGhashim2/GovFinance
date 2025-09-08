@@ -35,17 +35,17 @@
 </div>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">اضف مصورف جديد</a>
 </p>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Date</th>
-            <th>Notes</th>
-            <th style="width:160px">Actions</th>
+            <th>المبلغ</th>
+            <th>النوع</th>
+            <th>التاريخ</th>
+            <th>ملاحظات</th>
+            <th style="width:160px">حذف / تعديل</th>
         </tr>
     </thead>
     <tbody>
@@ -57,13 +57,13 @@
                 <td>@item.Date.ToString("yyyy-MM-dd")</td>
                 <td>@item.Notes</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info ms-1">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-secondary">تعديل</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-info ms-1">تفاصيل</a>
                     <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-sm btn-outline-danger ms-1"
-                                onclick="return confirm('Delete this expense?');">
-                            Delete
+                                onclick="return confirm('هل انت متأكد من الحذف?');">
+                            حذف
                         </button>
                     </form>
                 </td>
