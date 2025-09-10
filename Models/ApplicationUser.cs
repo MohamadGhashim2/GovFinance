@@ -2,9 +2,8 @@
 
 namespace GovFinance.Models
 {
-    // حساب النظام (مواطن أو أدمن)
     public class ApplicationUser : IdentityUser
     {
-        public Citizen? Citizen { get; set; } // علاقة واحد-لواحد مع Citizen
+        public User? User { get; set; } 
     }
 }

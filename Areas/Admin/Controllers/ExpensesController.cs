@@ -18,7 +18,7 @@ namespace GovFinance.Areas.Admin.Controllers
         public async Task<IActionResult> Index(DateOnly? start, DateOnly? end, string? q)
         {
             var query = _db.Expenses
-                .Include(e => e.Citizen)
+                .Include(e => e.User)
                 .ThenInclude(c => c.ApplicationUser)
                 .AsNoTracking()
                 .AsQueryable();
@@ -32,9 +32,9 @@ namespace GovFinance.Areas.Admin.Controllers
             {
                 q = q.Trim();
                 query = query.Where(e =>
-                    (e.Citizen.FullName != null && EF.Functions.Like(e.Citizen.FullName, $"%{q}%")) ||
-                    (e.Citizen.NationalId != null && EF.Functions.Like(e.Citizen.NationalId, $"%{q}%")) ||
-                    (e.Citizen.ApplicationUser.Email != null && EF.Functions.Like(e.Citizen.ApplicationUser.Email, $"%{q}%"))
+                    (e.User.FullName != null && EF.Functions.Like(e.User.FullName, $"%{q}%")) ||
+                    (e.User.UserId != null && EF.Functions.Like(e.User.UserId, $"%{q}%")) ||
+                    (e.User.ApplicationUser.Email != null && EF.Functions.Like(e.User.ApplicationUser.Email, $"%{q}%"))
                 );
             }
 
@@ -53,7 +53,7 @@ namespace GovFinance.Areas.Admin.Controllers
         public async Task<IActionResult> ExportCsv(DateOnly? start, DateOnly? end, string? q)
         {
             var query = _db.Expenses
-                .Include(e => e.Citizen)
+                .Include(e => e.User)
                 .ThenInclude(c => c.ApplicationUser)
                 .AsNoTracking()
                 .AsQueryable();
@@ -66,9 +66,9 @@ namespace GovFinance.Areas.Admin.Controllers
             {
                 q = q.Trim();
                 query = query.Where(e =>
-                    (e.Citizen.FullName != null && EF.Functions.Like(e.Citizen.FullName, $"%{q}%")) ||
-                    (e.Citizen.NationalId != null && EF.Functions.Like(e.Citizen.NationalId, $"%{q}%")) ||
-                    (e.Citizen.ApplicationUser.Email != null && EF.Functions.Like(e.Citizen.ApplicationUser.Email, $"%{q}%"))
+                    (e.User.FullName != null && EF.Functions.Like(e.User.FullName, $"%{q}%")) ||
+                    (e.User.UserId != null && EF.Functions.Like(e.User.UserId, $"%{q}%")) ||
+                    (e.User.ApplicationUser.Email != null && EF.Functions.Like(e.User.ApplicationUser.Email, $"%{q}%"))
                 );
             }
 
@@ -77,17 +77,17 @@ namespace GovFinance.Areas.Admin.Controllers
                 .ToListAsync();
 
             var sb = new StringBuilder();
-            sb.AppendLine("Date,NationalId,FullName,Email,Amount,Category,Notes");
+            sb.AppendLine("Date,UserId,FullName,Email,Amount,Category,Notes");
             foreach (var e in items)
             {
                 var line = string.Join(",", new[]
                 {
                     e.Date.ToString("yyyy-MM-dd"),
-                    Csv(e.Citizen?.NationalId),
-                    Csv(e.Citizen?.FullName),
-                    Csv(e.Citizen?.ApplicationUser?.Email),
+                    Csv(e.User?.UserId),
+                    Csv(e.User?.FullName),
+                    Csv(e.User?.ApplicationUser?.Email),
                     e.Amount.ToString(CultureInfo.InvariantCulture),
-                    Csv(e.Category),
+                   
                     Csv(e.Notes)
                 });
                 sb.AppendLine(line);

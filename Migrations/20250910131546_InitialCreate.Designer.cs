@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GovFinance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250829123444_Domain_v1")]
-    partial class Domain_v1
+    [Migration("20250910131546_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,7 +89,148 @@ namespace GovFinance.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("GovFinance.Models.Citizen", b =>
+            modelBuilder.Entity("GovFinance.Models.Expense", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("ExpenseCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("PaidAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpenseCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Expenses");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.ExpenseCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("DefaultAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("ExpenseCategories");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.Income", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CollectedAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateOnly>("Date")
+                        .HasColumnType("date");
+
+                    b.Property<int?>("IncomeCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IncomeCategoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Incomes");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.IncomeCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("DefaultAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("LinkedExpenseCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LinkedExpenseCategoryId");
+
+                    b.HasIndex("UserId", "Name")
+                        .IsUnique();
+
+                    b.ToTable("IncomeCategories");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +254,7 @@ namespace GovFinance.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
-                    b.Property<string>("NationalId")
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
@@ -123,78 +264,10 @@ namespace GovFinance.Migrations
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.HasIndex("NationalId")
+                    b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Citizens");
-                });
-
-            modelBuilder.Entity("GovFinance.Models.Expense", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<int>("CitizenId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CitizenId", "Date");
-
-                    b.ToTable("Expenses");
-                });
-
-            modelBuilder.Entity("GovFinance.Models.Income", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CitizenId")
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Notes")
-                        .HasMaxLength(300)
-                        .HasColumnType("varchar(300)");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CitizenId", "Date");
-
-                    b.ToTable("Incomes");
+                    b.ToTable("Userrs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -333,37 +406,80 @@ namespace GovFinance.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GovFinance.Models.Citizen", b =>
-                {
-                    b.HasOne("GovFinance.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("Citizen")
-                        .HasForeignKey("GovFinance.Models.Citizen", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-                });
-
             modelBuilder.Entity("GovFinance.Models.Expense", b =>
                 {
-                    b.HasOne("GovFinance.Models.Citizen", "Citizen")
+                    b.HasOne("GovFinance.Models.ExpenseCategory", "ExpenseCategory")
+                        .WithMany()
+                        .HasForeignKey("ExpenseCategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("GovFinance.Models.User", "User")
                         .WithMany("Expenses")
-                        .HasForeignKey("CitizenId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Citizen");
+                    b.Navigation("ExpenseCategory");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.ExpenseCategory", b =>
+                {
+                    b.HasOne("GovFinance.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("GovFinance.Models.Income", b =>
                 {
-                    b.HasOne("GovFinance.Models.Citizen", "Citizen")
+                    b.HasOne("GovFinance.Models.IncomeCategory", "IncomeCategory")
+                        .WithMany()
+                        .HasForeignKey("IncomeCategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("GovFinance.Models.User", "User")
                         .WithMany("Incomes")
-                        .HasForeignKey("CitizenId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Citizen");
+                    b.Navigation("IncomeCategory");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.IncomeCategory", b =>
+                {
+                    b.HasOne("GovFinance.Models.ExpenseCategory", "LinkedExpenseCategory")
+                        .WithMany()
+                        .HasForeignKey("LinkedExpenseCategoryId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("GovFinance.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LinkedExpenseCategory");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GovFinance.Models.User", b =>
+                {
+                    b.HasOne("GovFinance.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("User")
+                        .HasForeignKey("GovFinance.Models.User", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -419,10 +535,10 @@ namespace GovFinance.Migrations
 
             modelBuilder.Entity("GovFinance.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("Citizen");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GovFinance.Models.Citizen", b =>
+            modelBuilder.Entity("GovFinance.Models.User", b =>
                 {
                     b.Navigation("Expenses");
 

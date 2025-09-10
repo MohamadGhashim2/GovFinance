@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GovFinance.Models
 {
@@ -9,12 +10,15 @@ namespace GovFinance.Models
         [Required, StringLength(100)]
         public string Name { get; set; } = default!;
 
-        [Range(0, 999999999999.99)]
-        public decimal DefaultAmount { get; set; } = 0m;
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal DefaultAmount { get; set; }
 
-        public bool IsActive { get; set; } = true;
+        [Required]
+        public int UserId { get; set; }
+        public User User { get; set; } = default!;
 
-        // تنقلات عكسية
-        public ICollection<Income> Incomes { get; set; } = new List<Income>();
+        // الربط الاختياري بمصروف ثابت
+        public int? LinkedExpenseCategoryId { get; set; }
+        public ExpenseCategory? LinkedExpenseCategory { get; set; }
     }
 }

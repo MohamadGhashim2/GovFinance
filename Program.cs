@@ -2,9 +2,7 @@ using GovFinance.Data;
 using GovFinance.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
-using Microsoft.AspNetCore.Localization;
-using System.Globalization;
+using GovFinance.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +17,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrencyProvider, CookieCurrencyProvider>();
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
@@ -31,14 +31,14 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-var culture = new CultureInfo("ar-SY"); // أو ar-SA حسب عملتك
-var opts = new RequestLocalizationOptions
-{
-    DefaultRequestCulture = new RequestCulture(culture),
-    SupportedCultures = new[] { culture },
-    SupportedUICultures = new[] { culture }
-};
-app.UseRequestLocalization(opts);
+//var culture = new CultureInfo("ar-SY"); // أو ar-SA حسب عملتك
+//var opts = new RequestLocalizationOptions
+//{
+//    DefaultRequestCulture = new RequestCulture(culture),
+//    SupportedCultures = new[] { culture },
+//    SupportedUICultures = new[] { culture }
+//};
+//app.UseRequestLocalization(opts);
 
 if (app.Environment.IsDevelopment())
 {
@@ -76,19 +76,19 @@ if (app.Environment.IsDevelopment())
                 var roles = await userManager.GetRolesAsync(user);
                 if (roles == null || roles.Count == 0)
                 {
-                    await userManager.AddToRoleAsync(user, Roles.Citizen);
+                    await userManager.AddToRoleAsync(user, Roles.User);
                     await signInManager.RefreshSignInAsync(user);
                 }
 
                 var isAdmin = await userManager.IsInRoleAsync(user, Roles.Admin);
                 if (!isAdmin)
                 {
-                    var hasCitizen = await db.Citizens.AnyAsync(c => c.ApplicationUserId == user.Id);
-                    if (!hasCitizen)
+                    var hasUser = await db.Userrs.AnyAsync(c => c.ApplicationUserId == user.Id);
+                    if (!hasUser)
                     {
                         var tmpNid = ("N" + user.Id.Replace("-", "")).PadRight(11, '0').Substring(0, 11);
-                        var fallbackName = user.Email?.Split('@').FirstOrDefault() ?? "Citizen";
-                        db.Citizens.Add(new Citizen { ApplicationUserId = user.Id, NationalId = tmpNid, FullName = fallbackName });
+                        var fallbackName = user.Email?.Split('@').FirstOrDefault() ?? "User";
+                        db.Userrs.Add(new User { ApplicationUserId = user.Id, UserId = tmpNid, FullName = fallbackName });
                         await db.SaveChangesAsync();
                     }
                 }
@@ -119,30 +119,10 @@ using (var scope = app.Services.CreateScope())
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
-    foreach (var roleName in new[] { Roles.Admin, Roles.Citizen })
+    foreach (var roleName in new[] { Roles.Admin, Roles.User })
     {
         if (!await roleManager.RoleExistsAsync(roleName))
             await roleManager.CreateAsync(new IdentityRole(roleName));
-    }
-
-    string adminEmail = "admin@gov.local";
-    string adminPass = "Admin#12345"; 
-    var admin = await userManager.FindByEmailAsync(adminEmail);
-
-    if (admin == null)
-    {
-        admin = new ApplicationUser
-        {
-            UserName = adminEmail,
-            Email = adminEmail,
-            EmailConfirmed = true
-        };
-        var createResult = await userManager.CreateAsync(admin, adminPass);
-        if (createResult.Succeeded)
-        {
-            await userManager.AddToRoleAsync(admin, Roles.Admin);
-        }
-     
     }
 }
 

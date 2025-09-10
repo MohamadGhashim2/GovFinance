@@ -1,28 +1,32 @@
 ﻿@model GovFinance.Models.ViewModels.HomeIndexVm
 @using GovFinance.Models
+
 @{
     ViewData["Title"] = "الصفحة الرئيسية";
+
+    // مشتقات للعرض فقط
+    var collectedIncome = Model.IncomeMonth - Model.DeferredIncomeMonth;
+    var paidExpense = Model.ExpenseMonth - Model.DeferredExpenseMonth;
+
+    // الفرق المؤجّل (المصروف المؤجّل - الدخل المؤجّل)
+    var deferredDiff = Model.DeferredExpenseMonth - Model.DeferredIncomeMonth;
+    var balanceCollectedPlusDeferred = Model.BalanceMonth + deferredDiff;
 }
 
 <div class="text-center py-4">
-    <h1 class="display-5 fw-bold mb-3">أهلًا بك في نظام التمويل الحكومي</h1>
+    <h1 class="display-5 fw-bold mb-3">أهلًا بك في نظام المحاسبة</h1>
     <p class="lead text-muted mb-4">
-        هذا النظام يتيح للمواطنين إدارة <strong>الدخل</strong> و<strong>المصروف</strong> بسهولة،
-        ويمنح الحكومة أدوات لعرض وتحليل بيانات المواطنين بشكل مركزي وآمن.
+        هذا النظام يتيح للمستخدمين إدارة <strong>الدخل</strong> و<strong>المصروف</strong> بسهولة،
     </p>
 
     @if (User?.Identity?.IsAuthenticated ?? false)
     {
         if (Model?.IsAdmin == true)
         {
-            <a class="btn btn-success btn-lg me-2"
-               asp-area="Admin" asp-controller="Dashboard" asp-action="Index">
-                اذهب إلى لوحة الإدارة
-            </a>
-            <a class="btn btn-outline-secondary btn-lg"
-               asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a>
+            <a class="btn btn-success btn-lg me-2" asp-area="Admin" asp-controller="Dashboard" asp-action="Index">اذهب إلى لوحة الإدارة</a>
+            <a class="btn btn-outline-secondary btn-lg" asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a>
         }
-        else if (Model?.IsCitizen == true)
+        else if (Model?.IsUser == true)
         {
             <a class="btn btn-primary btn-lg me-2" asp-controller="MyIncomes" asp-action="Index">مدخولاتي</a>
             <a class="btn btn-outline-primary btn-lg me-2" asp-controller="MyExpenses" asp-action="Index">مصاريفي</a>
@@ -36,57 +40,169 @@
     }
 </div>
 
-@if (Model?.IsCitizen == true)
+@if (Model?.IsUser == true)
 {
     <div class="row g-3 my-4 text-center">
+        <!-- دخل -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <div class="text-muted">دخل هذا الشهر</div><div class="h3 mb-0">@Model.IncomeMonth.ToString("N2")</div>
+                    <div class="text-muted">دخل هذا الشهر</div>
+                    <div class="h3 mb-0">@Html.Money(Model.IncomeMonth)</div>
+                    @if (Model.DeferredIncomeMonth > 0)
+                    {
+                        <small class="d-block mt-1 text-warning">مؤجَّل: @Html.Money(Model.DeferredIncomeMonth)</small>
+                        <small class="d-block mt-1 text-success">مقبوض: @Html.Money(collectedIncome)</small>
+                    }
                 </div>
             </div>
         </div>
+
+        <!-- مصروف -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <div class="text-muted">مصروف هذا الشهر</div><div class="h3 mb-2">@Model.ExpenseMonth.ToString("N2")</div>
+                    <div class="text-muted">مصروف هذا الشهر</div>
+                    <div class="h3 mb-2">@Html.Money(Model.ExpenseMonth)</div>
                     <div class="progress" style="height:8px;">
                         <div class="progress-bar bg-success" role="progressbar" style="width:@Model.ExpensePercent%"></div>
                     </div>
                     <small class="text-muted d-block mt-1">@Model.ExpensePercent% من الدخل</small>
+                    @if (Model.DeferredExpenseMonth > 0)
+                    {
+                        <small class="d-block mt-1 text-warning">مؤجَّل: @Html.Money(Model.DeferredExpenseMonth)</small>
+                        <small class="d-block mt-1 text-success">مدفوع: @Html.Money(paidExpense)</small>
+                    }
                 </div>
             </div>
         </div>
+
+        <!-- المتبقي -->
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <div class="text-muted">المتبقي</div><div class="h3 mb-0">@Model.BalanceMonth.ToString("N2")</div>
+                    <div class="text-muted">المتبقي</div>
+                    <div class="h3 mb-0">@Html.Money(Model.BalanceMonth)</div>
+                    @if (deferredDiff != 0)
+                    {
+                        <small class="d-block mt-1 text-warning">مؤجَّل: @Html.Money(deferredDiff)</small>
+                        <small class="d-block mt-1 text-success">  الذي تملكه: @Html.Money(balanceCollectedPlusDeferred)</small>
+                    }
                 </div>
             </div>
         </div>
     </div>
 
+    <hr class="my-4" />
+
+    @* آخر الحركات + فورم فلترة بسيطة *@
+    @if (Model.LastEntries?.Any() == true)
+    {
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-header bg-transparent">
+                <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+                    <strong>آخر الحركات</strong>
+
+                    <div class="d-flex gap-2 flex-wrap">
+                        <div>
+                            <label class="form-label mb-1">النوع</label>
+                            <select id="typeFilter" class="form-select form-select-sm">
+                                <option value="all">الكل</option>
+                                <option value="income">دخل</option>
+                                <option value="expense">مصروف</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="form-label mb-1">بحث</label>
+                            <input id="searchAll" class="form-control form-control-sm" placeholder="ابحث في كل الأعمدة…" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body p-0">
+                <div class="p-2">
+                    <input id="quickFilter" class="form-control form-control-sm" placeholder="فلترة فورية داخل الجدول…" />
+                </div>
+
+                <div class="table-responsive">
+                    <table id="lastEntriesTable" class="table table-hover mb-0 align-middle">
+                        <thead>
+                            <tr>
+                                <th style="width:90px">النوع</th>
+                                <th>المصدر</th>
+                                <th class="text-end">المبلغ</th>
+                                <th class="text-end">المقبوض/المدفوع</th>
+                                <th class="text-end">المتبقّي</th>
+                                <th style="width:130px">التاريخ</th>
+                                <th>ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var r in Model.LastEntries)
+                            {
+                                var outstanding = r.Outstanding < 0 ? 0 : r.Outstanding;
+                                <tr>
+                                    <td>
+                                        <span class="badge @(r.Type == "دخل" ? "bg-success" : "bg-danger")">@r.Type</span>
+                                    </td>
+                                    <td>@r.Source</td>
+                                    <td class="text-end">@r.Amount.ToString("N2")</td>
+                                    <td class="text-end">@r.PaidOrCollected.ToString("N2")</td>
+                                    <td class="text-end">
+                                        @if (outstanding > 0)
+                                        {
+                                            <span class="badge bg-warning text-dark">@outstanding.ToString("N2")</span>
+                                        }
+                                        else
+                                        {
+
+                                            <span class="text-muted">0.00</span>
+                                        }
+                                    </td>
+                                    <td>@r.Date.ToString("yyyy-MM-dd")</td>
+                                    <td class="text-truncate" style="max-width:260px;">@r.Notes</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @section Scripts {
+            <script>
+                $(function () {
+                  var pageLen = @((ViewBag.Take ?? 10)); // قيمة ابتدائية، ممكن تغيّرها من السيرفر
+
+                  var table = $('#lastEntriesTable').DataTable({
+                    pageLength: pageLen,
+                    order: [[5, 'desc']],               // ترتيب حسب التاريخ (العمود السادس)
+                    lengthMenu: [[5,10,20,50,100],[5,10,20,50,100]],
+                    language: {                          // تعريب كامل
+                      url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/ar.json'
+                    }
+                  });
+
+                  // بحث عام
+                  $('#searchAll').on('keyup', function () {
+                    table.search(this.value).draw();
+                  });
+
+                  // فلترة النوع (العمود 0 فيه "دخل"/"مصروف")
+                  $('#typeFilter').on('change', function () {
+                    var v = this.value;
+                    if (v === 'all') {
+                      table.column(0).search('').draw();
+                    } else if (v === 'income') {
+                      table.column(0).search('^دخل$', true, false).draw();      // مطابقة تامة
+                    } else {
+                      table.column(0).search('^مصروف$', true, false).draw();
+                    }
+                  });
+                });
+            </script>
+        }
+
+    }
 }
-
-<hr class="my-4" />
-
-<div class="row g-3 text-center">
-    <div class="col-12 col-md-4">
-        <div class="p-3">
-            <h5 class="fw-semibold mb-1">للمواطن</h5>
-            <p class="text-muted mb-0">سجّل دخلك ومصاريفك، وتابع ملخصات شهرية وسنوية بسهولة.</p>
-        </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="p-3">
-            <h5 class="fw-semibold mb-1">للحكومة</h5>
-            <p class="text-muted mb-0">استعرض بيانات المواطنين مع فلاتر وتصدير CSV وتقارير.</p>
-        </div>
-    </div>
-    <div class="col-12 col-md-4">
-        <div class="p-3">
-            <h5 class="fw-semibold mb-1">أمان وخصوصية</h5>
-            <p class="text-muted mb-0">صلاحيات دقيقة وتسجيل دخول آمن.</p>
-        </div>
-    </div>
-</div>

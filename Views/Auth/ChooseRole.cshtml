@@ -8,24 +8,55 @@
         <h2 class="mb-4">اختر نوع الحساب</h2>
 
         <div class="row g-3 justify-content-center">
-            <div class="col-12 col-md-5">
-                <a class="btn btn-lg btn-primary w-100"
-                   href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Citizen })">
-                    مواطن
+            
+            <div class="">
+                <a class="btn btn-lg btn-primary w-250"
+                   href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.User })">
+                    مستخدم جديد
                 </a>
             </div>
-            <div class="col-12 col-md-5">
-                <a class="btn btn-lg btn-outline-danger w-100"
-                   href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Admin })">
-                    حكومة
-                </a>
-            </div>
+            
         </div>
-
+     
         <div class="mt-4">
             <a class="link-secondary" href="@Url.Page("/Account/Login", new { area = "Identity" })">
                 عندي حساب مسبقًا — تسجيل دخول
             </a>
         </div>
+
+        <div class="">
+            <a id="adminBtn"
+               class="btn btn-lg btn-outline-danger w-100 d-none"
+               href='@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Admin })'
+               aria-hidden="true">
+                أدمن
+            </a>
+        </div>
     </div>
 </div>
+
+
+@section Scripts {
+    <script>
+        (function(){
+          const btn = document.getElementById('adminBtn');
+          let shown = false;
+
+          window.addEventListener('keydown', function(e){
+            const isCombo = e.ctrlKey && e.shiftKey && e.altKey && (e.key === 'a' || e.key === 'A');
+            if (!isCombo) return;
+
+            e.preventDefault(); 
+            shown = !shown;
+            if (shown) {
+              btn.classList.remove('d-none');
+              btn.removeAttribute('aria-hidden');   
+              setTimeout(() => btn.focus(), 0);
+            } else {
+              btn.classList.add('d-none');
+              btn.setAttribute('aria-hidden','true');
+            }
+          });
+        })();
+    </script>
+}

@@ -63,7 +63,7 @@ namespace GovFinance.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string? role = null, string? returnUrl = null)
         {
-            Role = role ?? Roles.Citizen;
+            Role = role ?? Roles.User;
             ReturnUrl = returnUrl ?? "/";
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -75,7 +75,7 @@ namespace GovFinance.Areas.Identity.Pages.Account
 
             var selectedRole = (Role?.Equals(Roles.Admin, StringComparison.OrdinalIgnoreCase) == true)
                 ? Roles.Admin
-                : Roles.Citizen;
+                : Roles.User;
 
             if (!ModelState.IsValid)
                 return Page();
@@ -123,20 +123,20 @@ namespace GovFinance.Areas.Identity.Pages.Account
                 return Page();
             }
 
-            // أنشئ سجل Citizen تلقائيًا عند التسجيل كمواطن (NationalId مطلوب => نولّد قيمة فريدة مؤقتة)
-            if (selectedRole == Roles.Citizen)
+            // أنشئ سجل User تلقائيًا عند التسجيل كمواطن (NationalId مطلوب => نولّد قيمة فريدة مؤقتة)
+            if (selectedRole == Roles.User)
             {
-                var exists = await _db.Citizens.AnyAsync(c => c.ApplicationUserId == user.Id);
+                var exists = await _db.Userrs.AnyAsync(c => c.ApplicationUserId == user.Id);
                 if (!exists)
                 {
                     // NationalId مؤقت فريد بطول 11 (مشتق من UserId)
                     var tmpNid = ("N" + user.Id.Replace("-", "")).PadRight(11, '0').Substring(0, 11);
 
-                    var fallbackName = user.Email?.Split('@').FirstOrDefault() ?? "Citizen";
-                    _db.Citizens.Add(new Citizen
+                    var fallbackName = user.Email?.Split('@').FirstOrDefault() ?? "User";
+                    _db.Userrs.Add(new User
                     {
                         ApplicationUserId = user.Id,
-                        NationalId = tmpNid,
+                        UserId = tmpNid,
                         FullName = fallbackName
                     });
                     await _db.SaveChangesAsync();

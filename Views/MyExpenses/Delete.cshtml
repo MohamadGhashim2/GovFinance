@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Delete";
-    TempData["Toast"] = "تم الحفظ بنجاح";
 
 }
 
@@ -13,41 +12,35 @@
     <h4>Expense</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            اسم المواطن
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Citizen.ApplicationUserId)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             المبلغ
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Amount)
         </dd>
-        <dt class = "col-sm-2">
-            النوع
+        <dt class="col-sm-2">
+            مصدر الدخل
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category)
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Source)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             التاريخ
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Date)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             ملاحظات
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Notes)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">العودة إلى القائمة</a>
     </form>
 </div>

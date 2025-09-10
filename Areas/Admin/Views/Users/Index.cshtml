@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GovFinance.Models.Citizen>
+﻿@model IEnumerable<GovFinance.Models.User>
 
 @{
     ViewData["Title"] = "المواطنون";
@@ -22,25 +22,25 @@
         @foreach (var c in Model)
         {
             <tr>
-                <td>@c.NationalId</td>
+                <td>@c.UserId</td>
                 <td>@c.FullName</td>
                 <td>@c.ApplicationUser?.Email</td>
            
  
                 <td>
                     <a class="btn btn-sm btn-outline-primary"
-                       asp-area="Admin" asp-controller="Citizens" asp-action="Ledger"
+                       asp-area="Admin" asp-controller="Users" asp-action="Ledger"
                        asp-route-id="@c.Id">كشف الحساب</a>
 
                     <a class="btn btn-sm btn-outline-secondary ms-1"
-                       asp-area="Admin" asp-controller="Citizens" asp-action="Edit"
+                       asp-area="Admin" asp-controller="Users" asp-action="Edit"
                        asp-route-id="@c.Id">تعديل</a>
 
-                    <form asp-area="Admin" asp-controller="Citizens" asp-action="Delete"
+                    <form asp-area="Admin" asp-controller="Users" asp-action="Delete"
                           asp-route-id="@c.Id" method="post" class="d-inline">
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-sm btn-outline-danger ms-1"
-                                onclick="return confirm('حذف هذا المواطن؟');">
+                                onclick="return confirm('حذف هذا المستخدم؟');">
                             حذف
                         </button>
                     </form>

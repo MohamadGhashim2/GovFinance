@@ -1,9 +1,12 @@
 ﻿<!DOCTYPE html>
 @using GovFinance.Models
 @using System.Reflection
+@using Microsoft.AspNetCore.Mvc.Localization
+
 @inject IWebHostEnvironment Env
 @{
     var ver = Assembly.GetExecutingAssembly().GetName().Version?.ToString();
+   
 }
 
 <html lang="ar" dir="rtl" data-bs-theme="light">
@@ -20,12 +23,14 @@
             document.documentElement.setAttribute('data-bs-theme', theme);
           } catch(e) {}
         })();
-    </script> 
+    </script>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/GovFinance.styles.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
 </head>
 <body>
     <header>
@@ -33,7 +38,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/img/govfinance_logo-trans2.png" alt="GovFinance" class="brand-logo" />
-					
+
                     <span class="visually-hidden">GovFinance</span>
                 </a>
 
@@ -43,58 +48,108 @@
                 </button>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <div class="dropdown me-2">
+                        <button class="btn btn-currency  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            @Currency.Symbol @Currency.Code
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="TRY" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">₺ TRY — ليرة تركية</a></li>
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="USD" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">$ USD — دولار</a></li>
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SAR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">﷼ SAR — ريال سعودي</a></li>
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="EUR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">€ EUR — يورو</a></li>
+                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SYP" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">SYP SYP — ليرة سورية</a></li>
+
+                        </ul>
+                    </div>
                     <ul class="navbar-nav flex-grow-1">
-                       
+
 
                         @if (User?.Identity?.IsAuthenticated ?? false)
                         {
                             if (User.IsInRole(Roles.Admin))
                             {
-                                <!-- قائمة الحكومة (Admin) -->
                                 <li class="nav-item">
                                     <a class="nav-link text-dark"
                                        asp-area="Admin" asp-controller="Incomes" asp-action="Index">
-                                        مدخلات المواطنين
+                                        مدخلات المستخدمين
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark"
                                        asp-area="Admin" asp-controller="Expenses" asp-action="Index">
-                                        مخرجات المواطنين
+                                        مخرجات جميع المستخدمين
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark"
-                                       asp-area="Admin" asp-controller="Citizens" asp-action="Index">
-                                        المواطنون
+                                       asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                        المستخدمون
                                     </a>
                                 </li>
                             }
-                            else if (User.IsInRole(Roles.Citizen))
+                            else if (User.IsInRole(Roles.User))
                             {
-                                <!-- قائمة المواطن -->
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark"
-                                       asp-area="" asp-controller="MyIncomes" asp-action="Index">
-                                        مدخولاتي
+                                <!-- المدخولات + منسدلة -->
+                                <li class="nav-item dropdown">
+                                    <!-- الرابط الرئيسي يذهب لصفحة المدخولات -->
+                                    <a class="nav-link" asp-area="" asp-controller="MyIncomes" asp-action="Index">
+                                        المدخولات
                                     </a>
+
+                                    <!-- زر فتح المنسدلة للموبايل فقط -->
+                                    <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                            aria-label="قائمة المدخولات"></button>
+
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="MyIncomes" asp-action="Deferred">
+                                                المدخولات المؤجلة
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="IncomeCategories" asp-action="Index">
+                                                مصادر الدخل الأساسية
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark"
-                                       asp-area="" asp-controller="MyExpenses" asp-action="Index">
-                                        مصاريفي
+
+                                <!-- المصاريف + منسدلة -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" asp-area="" asp-controller="MyExpenses" asp-action="Index">
+                                        المصاريف
                                     </a>
+
+                                    <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                            aria-label="قائمة المصاريف"></button>
+
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="MyExpenses" asp-action="Deferred">
+                                                المصاريف المؤجلة
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-area="" asp-controller="ExpenseCategories" asp-action="Index">
+                                                المصاريف الأساسية
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
+
+                                
                             }
                         }
 
-                        
+
                     </ul>
                     <div class="d-flex align-items-center gap-2">
                         <button id="themeToggle" type="button" class="btn btn-sm btn-outline-secondary" title="تبديل الوضع">🌙</button>
                         <partial name="_LoginPartial" />
                     </div>
-                    
+
                 </div>
             </div>
         </nav>
@@ -110,7 +165,7 @@
         <div class="container py-3 small">
             <div class="row align-items-center g-2">
                 <div class="col-md">
-                    <span>&copy; @DateTime.UtcNow.Year وزارة المالية — جميع الحقوق محفوظة.</span>
+                    <span>&copy; @DateTime.UtcNow.Year  — جميع الحقوق محفوظة.</span>
                     <span class="mx-1">|</span>
                     <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
                     <span class="mx-1">•</span>
@@ -118,7 +173,7 @@
                     <span class="mx-1">•</span>
                     <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Accessibility">سياسة الوصول الرقمي</a>
                     <span class="mx-1">•</span>
-                    <a class="link-secondary" href="mailto:support@gov.local">تواصل معنا</a>
+                    <a class="link-secondary" href="#">تواصل معنا</a>
                 </div>
 
                 <div class="col-md-auto text-md-start">
@@ -128,15 +183,21 @@
                 </div>
             </div>
 
-            
+
         </div>
     </footer>
 
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" />
+
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    \
     @await RenderSectionAsync("Scripts", required: false)
 
     @if (TempData["Toast"] is string msg)

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<GovFinance.Models.ExpenseCategory>
+@{
+    ViewData["Title"] = "المصاريف الثابتة";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">@ViewData["Title"]</h1>
+    <a class="btn btn-primary"
+       asp-action="Create"
+       asp-route-returnUrl="@Url.Action("Create", "MyExpenses")">إضافة مصروف أساسي</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>الاسم</th>
+            <th>المبلغ الافتراضي</th>
+            <th style="width:120px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Name</td>
+                <td>@x.DefaultAmount.ToString("N2")</td>
+                <td class="text-end">
+                    <form asp-action="Delete" method="post" onsubmit="return confirm('حذف؟');">
+                        <input type="hidden" name="id" value="@x.Id" />
+                        <button class="btn btn-sm btn-outline-danger">حذف</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

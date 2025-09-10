@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GovFinance.Models
 {
@@ -7,20 +7,26 @@ namespace GovFinance.Models
     {
         public int Id { get; set; }
 
-        public int CitizenId { get; set; }
+        [Required]
+        public int UserId { get; set; }
+        public User User { get; set; } = default!;
 
-        [ValidateNever]
-        public Citizen? Citizen { get; set; }  // <-- nullable + لا تتحقق منها
-
-        [Required, Range(0, 999999999)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required, StringLength(100)]
-        public string Source { get; set; } = default!;
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal CollectedAmount { get; set; }  // المبلغ المقبوض الآن
 
-        public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+        [NotMapped]
+        public decimal OutstandingAmount => Math.Max(0, Amount - CollectedAmount); // المتبقّي
 
-        [StringLength(300)]
+        public string? Source { get; set; }   // يبقى اختياري
+
+        public DateOnly Date { get; set; }
         public string? Notes { get; set; }
+
+        public int? IncomeCategoryId { get; set; }
+        public IncomeCategory? IncomeCategory { get; set; }
+
     }
 }

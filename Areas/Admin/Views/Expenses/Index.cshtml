@@ -48,11 +48,11 @@
         {
             <tr>
                 <td>@e.Date.ToString("yyyy-MM-dd")</td>
-                <td>@e.Citizen?.NationalId</td>
-                <td>@e.Citizen?.FullName</td>
-                <td>@e.Citizen?.ApplicationUser?.Email</td>
+                <td>@e.User?.UserId</td>
+                <td>@e.User?.FullName</td>
+                <td>@e.User?.ApplicationUser?.Email</td>
                 <td>@e.Amount.ToString("0.00")</td>
-                <td>@e.Category</td>
+             
                 <td>@e.Notes</td>
             </tr>
         }

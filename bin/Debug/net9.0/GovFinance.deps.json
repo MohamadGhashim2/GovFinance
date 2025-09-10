@@ -19,6 +19,11 @@
         },
         "runtime": {
           "GovFinance.dll": {}
+        },
+        "resources": {
+          "en-US/GovFinance.resources.dll": {
+            "locale": "en-US"
+          }
         }
       },
       "Azure.Core/1.38.0": {

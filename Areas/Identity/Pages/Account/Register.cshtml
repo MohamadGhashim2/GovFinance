@@ -5,8 +5,8 @@
     ViewData["Title"] = "إنشاء حساب";
     Layout = "/Views/Shared/_Layout.cshtml";
 
-    // الدور القادم من الاستعلام ?role=Citizen|Admin أو الافتراضي مواطن
-    var role = Model.Role ?? Roles.Citizen;
+   
+    var role = Model.Role ?? Roles.User;
     var isAdmin = string.Equals(role, Roles.Admin, System.StringComparison.OrdinalIgnoreCase);
 }
 
@@ -25,22 +25,17 @@
                         <div style="max-width: 380px;">
                             <img src="~/img/govfinance_logo-trans2.png" style="width:250px; height:auto" alt="GovFinance" class="brand-logo mb-3" />
                             <div class="mb-2">
-                                <span class="badge @(isAdmin ? "bg-danger" : "bg-primary")">
-                                    @(isAdmin ? "حكومة (Admin)" : "مواطن (Citizen)")
-                                </span>
+                             
                             </div>
                             <h2 class="fw-bold mb-2">إنشاء حساب جديد</h2>
-                            <p class="mb-3">
-                                اخترت التسجيل كـ <strong>@(isAdmin ? "حكومة" : "مواطن")</strong>.
-                                يمكنك تغيير الاختيار لاحقًا من شاشة اختيار الدور.
-                            </p>
+                        
                             <p class="small mb-0 opacity-75">
-                                بعد إنشاء الحساب، سيتم توجيهك تلقائيًا للواجهة المناسبة حسب الدور.
+                                بعد إنشاء الحساب، سيتم توجيهك تلقائيًا.
                             </p>
                         </div>
                     </div>
 
-                    <!-- نموذج التسجيل -->
+                 
                     <div class="col-12 col-md-6 p-4 p-md-5">
                         <h3 class="mb-3">تعبئة بيانات الحساب</h3>
 
@@ -92,10 +87,7 @@
                             </button>
 
                             <div class="d-flex flex-column flex-md-row gap-2 justify-content-between">
-                                <a class="btn btn-outline-secondary flex-fill"
-                                   asp-area="" asp-controller="Auth" asp-action="ChooseRole">
-                                    الرجوع لاختيار الدور
-                                </a>
+                           
                                 <a class="btn btn-link flex-fill text-md-end"
                                    asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" asp-route-role="@role">
                                     لدي حساب بالفعل — تسجيل الدخول
@@ -104,7 +96,7 @@
                         </form>
 
                         @* تسجيل عبر خدمات خارجية إن كانت مفعّلة *@
-                        @if ((Model.ExternalLogins?.Count ?? 0) > 0)
+                      @*   @if ((Model.ExternalLogins?.Count ?? 0) > 0)
                         {
                             <hr class="my-4" />
                             <div>
@@ -126,7 +118,7 @@
                                     </div>
                                 </form>
                             </div>
-                        }
+                        } *@
                     </div>
                 </div> <!-- /row -->
             </div>

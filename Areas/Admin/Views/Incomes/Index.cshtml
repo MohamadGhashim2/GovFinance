@@ -48,9 +48,9 @@
         {
             <tr>
                 <td>@i.Date.ToString("yyyy-MM-dd")</td>
-                <td>@i.Citizen?.NationalId</td>
-                <td>@i.Citizen?.FullName</td>
-                <td>@i.Citizen?.ApplicationUser?.Email</td>
+                <td>@i.User?.UserId</td>
+                <td>@i.User?.FullName</td>
+                <td>@i.User?.ApplicationUser?.Email</td>
                 <td>@i.Amount.ToString("0.00")</td>
                 <td>@i.Source</td>
                 <td>@i.Notes</td>

@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation; // <-- أضِف هذا
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GovFinance.Models
 {
@@ -7,21 +7,26 @@ namespace GovFinance.Models
     {
         public int Id { get; set; }
 
-        // لا حاجة لـ [Required] هنا؛ العمود أصلاً NOT NULL
-        public int CitizenId { get; set; }
+        [Required]
+        public int UserId { get; set; }
+        public User User { get; set; } = default!;
 
-        [ValidateNever]              // لا تتحقق منها في الـ ModelState
-        public Citizen? Citizen { get; set; }  // <-- صارت nullable
-
-        [Required, Range(0, 999999999)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Required, StringLength(100)]
-        public string Category { get; set; } = default!;
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal PaidAmount { get; set; }  // المبلغ المقبوض الآن
 
-        public DateOnly Date { get; set; } = DateOnly.FromDateTime(DateTime.Today);
+        [NotMapped]
+        public decimal OutstandingAmount => Math.Max(0, Amount - PaidAmount); // المتبقّي
 
-        [StringLength(300)]
+        public string? Source { get; set; }   // يبقى اختياري
+
+        public DateOnly Date { get; set; }
         public string? Notes { get; set; }
+
+        public int? ExpenseCategoryId { get; set; }
+        public ExpenseCategory? ExpenseCategory { get; set; }
+
     }
 }

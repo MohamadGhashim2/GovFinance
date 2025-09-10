@@ -2,12 +2,12 @@
 
 namespace GovFinance.Models
 {
-    public class Citizen
+    public class User
     {
         public int Id { get; set; }
 
-        [Required, StringLength(11)]        // مثال: رقم وطني (TR/…)
-        public string NationalId { get; set; } = default!;
+        [Required, StringLength(11)]        
+        public string UserId { get; set; } = default!;
 
         [Required, StringLength(150)]
         public string FullName { get; set; } = default!;

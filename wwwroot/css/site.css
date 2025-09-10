@@ -1,40 +1,48 @@
-
+/* =======================
+   Theme variables
+   ======================= */
 :root {
-    --brand-bg: springgreen; /* خلفية الصفحة في الوضع الفاتح */
-    --brand-green: springgreen; /* لون الزر الأساسي */
-    --brand-green-2: #00e874; /* لون الهوفر */
-    --text-color: #212529;
-    --card-bg: #fff;
-    --card-border: rgba(0,0,0,.08);
+    --brand-bg: springgreen; /* صفحة (خارج الكارد) في الفاتح */
+    --brand-green: springgreen; /* اللون الأساسي */
+    --brand-green-2: #00e874; /* هوفر */
+    --text-color: #212529; /* لون النص العام */
+    --card-bg: #fff; /* خلفية الكروت/النافبار/الفوتر */
+    --card-border: rgba(0,0,0,.08); /* حدود ناعمة */
 }
 
+/* Dark theme overrides */
+[data-bs-theme="dark"] {
+    --brand-bg: #0b3d2e;
+    --brand-green: #16d86e;
+    --brand-green-2: #12c25f;
+    --text-color: #e9ecef;
+    --card-bg: #121212;
+    --card-border: rgba(255,255,255,.12);
+}
 
-/* ===== أساسيات ===== */
+/* =======================
+   Base
+   ======================= */
 html {
     font-size: 15px;
     position: relative;
     min-height: 100%;
 }
 
-/* ضمان وضوح النص في اللوحة الجانبية عند الخلفية الخضراء */
-@media (min-width: 768px) {
-    .text-white a {
-        color: #fff;
-        text-decoration: underline;
-    }
-
-        .text-white a:hover {
-            text-decoration: none;
-        }
-}
-
 body {
-    margin-bottom: 60px;
+    height: 100%;
+    margin-bottom: 60px; /* مساحة الفوتر */
+    background: var(--brand-bg);
+    color: var(--text-color);
     font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
 
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+/* Focus ring موحّد */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
     box-shadow: 0 0 0 0.1rem #fff, 0 0 0 0.25rem var(--brand-green);
 }
 
@@ -50,89 +58,18 @@ body {
     text-align: start;
 }
 
-[data-bs-theme="dark"] {
-    --brand-bg: #0b3d2e; 
-    --brand-green: #16d86e;
-    --brand-green-2: #12c25f;
-    --text-color: #e9ecef;
-    --card-bg: #121212;
-    --card-border: rgba(255,255,255,.12);
-}
-
-html, body {
-    height: 100%;
-    background: var(--brand-bg);
-    color: var(--text-color);
-}
-
 /* انتقالات لطيفة عند تبديل الثيم */
-body, .content-card, .navbar, footer.footer {
-    transition: background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+body, .content-card, .navbar, footer.footer, .dropdown-menu {
+    transition: background-color .1s ease, color .1s ease, border-color .1s ease, box-shadow .1s ease;
 }
 
-/* ===== الكارد/المحتوى ===== */
-.content-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 1rem;
-    box-shadow: 0 .75rem 2rem rgba(0,0,0,.08), 0 .125rem .5rem rgba(0,0,0,.05);
-}
-
-
+/* =======================
+   Layout helpers
+   ======================= */
 .main-wrap {
     min-height: calc(100vh - 160px);
 }
 
-/* ===== النافبار والفوتر ===== */
-.navbar, footer.footer {
-    background: var(--card-bg) !important;
-    color: var(--text-color);
-}
-
-    .navbar .nav-link, .footer a {
-        color: inherit;
-    }
-
-.footer a {
-    text-decoration: none;
-}
-
-    .footer a:hover {
-        text-decoration: underline;
-    }
-
-/* ===== اللوجو ===== */
-.brand-logo {
-    height: 40px;
-    width: auto;
-    display: block;
-}
-
-.navbar-brand {
-    gap: .5rem;
-}
-
-/* ===== الأزرار ===== */
-.btn-primary {
-    --bs-btn-color: #0b3d2e;
-    --bs-btn-bg: var(--brand-green);
-    --bs-btn-border-color: var(--brand-green);
-    --bs-btn-hover-bg: var(--brand-green-2);
-    --bs-btn-hover-border-color: var(--brand-green-2);
-    --bs-btn-active-bg: var(--brand-green-2);
-    --bs-btn-active-border-color: var(--brand-green-2);
-}
-
-
-.btn-outline-primary {
-    --bs-btn-color: var(--brand-green);
-    --bs-btn-border-color: var(--brand-green);
-    --bs-btn-hover-bg: var(--brand-green);
-    --bs-btn-hover-border-color: var(--brand-green);
-    --bs-btn-hover-color: #0b3d2e;
-}
-
-/* ===== تمركز صفحة اختيار الدور ===== */
 .hero-center {
     min-height: 65vh;
     display: flex;
@@ -141,9 +78,19 @@ body, .content-card, .navbar, footer.footer {
     padding: 2rem 0;
 }
 
+/* =======================
+   Cards (content)
+   ======================= */
+.content-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 1rem;
+    box-shadow: 0 .75rem 2rem rgba(0,0,0,.08), 0 .125rem .5rem rgba(0,0,0,.05);
+}
 
+/* Glass effect (مدعوم) + fallback */
 .content-glass {
-    background: rgba(255,255,255,.92); /* شبه شفاف */
+    background: rgba(255,255,255,.92);
     border-radius: 1rem;
     border: 1px solid rgba(255,255,255,.85);
     box-shadow: 0 .75rem 2rem rgba(0,0,0,.10);
@@ -157,7 +104,7 @@ body, .content-card, .navbar, footer.footer {
     }
 }
 
-
+/* Halo ناعم حول الكارد (اختياري) */
 .content-halo {
     position: relative;
 }
@@ -172,11 +119,17 @@ body, .content-card, .navbar, footer.footer {
         filter: blur(12px);
     }
 
-
-.navbar {
+/* =======================
+   Navbar / Footer
+   ======================= */
+.navbar,
+footer.footer {
     background: var(--card-bg) !important;
     color: var(--text-color);
-    /* أهم المتغيّرات التي تتحكم بألوان الروابط والعلامة */
+}
+
+/* تعيين متغيّرات ألوان نافبار Bootstrap */
+.navbar {
     --bs-navbar-color: var(--text-color);
     --bs-navbar-hover-color: var(--brand-green-2);
     --bs-navbar-active-color: var(--brand-green);
@@ -185,7 +138,7 @@ body, .content-card, .navbar, footer.footer {
     --bs-navbar-toggler-border-color: var(--card-border);
 }
 
-
+    /* روابط النافبار والعلامة */
     .navbar .navbar-brand,
     .navbar .nav-link {
         color: var(--bs-navbar-color) !important;
@@ -196,7 +149,7 @@ body, .content-card, .navbar, footer.footer {
             color: var(--bs-navbar-hover-color) !important;
         }
 
-
+/* أيقونة زر الهامبرغر حسب الثيم */
 [data-bs-theme="light"] .navbar {
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(33,37,41,0.85)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
@@ -204,3 +157,226 @@ body, .content-card, .navbar, footer.footer {
 [data-bs-theme="dark"] .navbar {
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(233,236,239,0.9)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
+/* Footer links */
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+/* =======================
+   Branding
+   ======================= */
+.brand-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.navbar-brand {
+    gap: .5rem;
+}
+
+/* =======================
+   Buttons
+   ======================= */
+.btn-primary {
+    --bs-btn-color: #0b3d2e;
+    --bs-btn-bg: var(--brand-green);
+    --bs-btn-border-color: var(--brand-green);
+    --bs-btn-hover-bg: var(--brand-green-2);
+    --bs-btn-hover-border-color: var(--brand-green-2);
+    --bs-btn-active-bg: var(--brand-green-2);
+    --bs-btn-active-border-color: var(--brand-green-2);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--brand-green);
+    --bs-btn-border-color: var(--brand-green);
+    --bs-btn-hover-bg: var(--brand-green);
+    --bs-btn-hover-border-color: var(--brand-green);
+    --bs-btn-hover-color: #0b3d2e;
+}
+
+/* زر العملة – يتكيّف مع الثيم */
+.btn-currency {
+    --btn-bg: var(--card-bg);
+    --btn-fg: var(--text-color);
+    --btn-border: var(--card-border);
+    --btn-hover: rgba(0,0,0,.04);
+    --btn-active: rgba(0,0,0,.07);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    border: 1px solid var(--btn-border);
+    border-radius: .6rem;
+    padding-inline: .9rem;
+    padding-block: .45rem;
+    line-height: 1.2;
+}
+
+[data-bs-theme="dark"] .btn-currency {
+    --btn-hover: rgba(255,255,255,.06);
+    --btn-active: rgba(255,255,255,.10);
+}
+
+.btn-currency:hover,
+.btn-currency:focus {
+    background: var(--btn-hover);
+    color: var(--btn-fg);
+    border-color: var(--btn-border);
+}
+
+.btn-currency:active,
+.btn-currency.show {
+    background: var(--btn-active);
+    color: var(--btn-fg);
+    border-color: var(--btn-border);
+}
+
+/* =======================
+   Dropdown (يتبع الثيم)
+   ======================= */
+.dropdown-menu {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+}
+
+.dropdown-item {
+    color: var(--text-color);
+}
+
+    .dropdown-item:hover,
+    .dropdown-item:focus {
+        background: rgba(0,0,0,.04);
+        color: var(--text-color);
+    }
+
+[data-bs-theme="dark"] .dropdown-item:hover,
+[data-bs-theme="dark"] .dropdown-item:focus {
+    background: rgba(255,255,255,.06);
+}
+
+/* =======================
+   Numeric inputs (أرقام لاتينية)
+   ======================= */
+.latin-digits,
+input[type=number] {
+    direction: ltr;
+    unicode-bidi: plaintext;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* بادج رمز العملة بجانب الحقول */
+.input-group-text {
+    min-width: 3rem;
+    justify-content: center;
+    font-weight: 600;
+}
+/* افتح المنسدلة بالـ hover على الشاشات الكبيرة */
+@media (min-width: 992px) {
+    .navbar .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0; /* يمنع القفزة */
+    }
+    /* أخفي سهم الـ dropdown في الشاشات الكبيرة (اختياري) */
+    .navbar .dropdown .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+/* محاذاة القائمة ولونها يتبع الثيم لديك مسبقًا */
+.navbar .dropdown-menu {
+    /* لديك بالفعل متغيرات للألوان في site.css ستطبّق تلقائيًا */
+}
+/* ===== تحسينات عامّة للموبايل ===== */
+@media (max-width: 575.98px) {
+    /* بطاقات ونصوص أصغر قليلاً */
+    .display-5 {
+        font-size: 1.8rem;
+    }
+
+    .hero-center {
+        min-height: 40vh;
+        padding: 1.25rem 0;
+    }
+
+    /* الأزرار الكبيرة تصير بعرض كامل لسهولة اللمس */
+    .btn-lg {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+
+    /* بطاقات أقل بروزاً على الموبايل */
+    .content-card {
+        border-radius: .75rem;
+        box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.06);
+    }
+
+    /* الجداول: حجم خط أصغر افتراضياً */
+    .table {
+        font-size: .9rem;
+    }
+}
+
+/* اجعل الجداول قابلة للتمرير أفقياً دايمًا على الشاشات الضيّقة */
+.table-wrap, .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* المنسدلات داخل النافبار على الجوال: اجعلها “ستاتيكية” لتملأ العرض */
+@media (max-width: 991.98px) {
+    .navbar .dropdown-menu {
+        position: static;
+        float: none;
+        border: 0;
+        box-shadow: none;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+    }
+}
+
+/* افتح المنسدلة بالهوفر على الشاشات الكبيرة فقط (كما عملنا) */
+@media (min-width: 992px) {
+    .navbar .dropdown:hover > .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+
+    .navbar .dropdown .dropdown-toggle::after {
+        display: none;
+    }
+}
+
+/* لوحات أزرار المبالغ: التفاف تلقائي وما تنكسر */
+[data-amount-pad] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+}
+
+    [data-amount-pad] .btn {
+        flex: 0 0 auto;
+    }
+
+/* مدخلات الأرقام: امنع التمدد الأفقي على الشاشات الصغيرة */
+input[type=number] {
+    max-width: 100%;
+}
+
+/* تجنّب ارتفاعات قسرية تسبب مشاكل تمرير مع المودال/الكيبورد */
+html, body {
+    height: auto;
+    min-height: 100%;
+}
+
+/* احتساب ارتفاع الصفحة بشكل أدق للأجهزة الحديثة */
+.main-wrap {
+    min-height: calc(100svh - 160px);
+}
+/* بدلاً من 100vh */

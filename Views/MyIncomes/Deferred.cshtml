@@ -1,0 +1,67 @@
+﻿@model IEnumerable<GovFinance.Models.Income>
+@{
+    ViewData["Title"] = "مدخولات مؤجَّلة";
+}
+<h1 class="h4">مدخولات مؤجَّلة</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>المصدر</th>
+            <th>المبلغ</th>
+            <th>المدفوع</th>
+            <th>المتبقّي</th>
+            <th>التاريخ</th>
+            <th>ملاحظات</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <td>@i.Source</td>
+                <td data-amount>@Html.Money(i.Amount)</td>
+                <td data-paid>@Html.Money(i.CollectedAmount)</td>
+                <td data-remaining><span class="badge bg-warning text-dark">@Html.Money(i.OutstandingAmount)</span></td>
+                <td>@i.Date</td>
+                <td>@i.Notes</td>
+                <td>
+                    <form asp-action="PayAll" asp-route-id="@i.Id" method="post" class="d-inline pay-full-form">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-success" @(i.OutstandingAmount <= 0 ? "disabled" : null)>
+                            تحصيل
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    document.querySelectorAll('.pay-full-form').forEach(function (f) {
+      f.addEventListener('submit', async function (ev) {
+        ev.preventDefault();
+        const btn = f.querySelector('button[type=submit]');
+        if (btn.disabled) return;
+        btn.disabled = true;
+
+        const res = await fetch(f.action, {
+          method: 'POST',
+          body: new FormData(f),
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+          credentials: 'include'
+        });
+        if (!res.ok) { btn.disabled = false; return; }
+
+        const data = await res.json();
+        if (data && data.ok) {
+          const tr = f.closest('tr');
+          tr.querySelector('[data-paid]')      .textContent = data.paidFormatted ?? Number(data.paid).toFixed(2);
+          tr.querySelector('[data-remaining]') .innerHTML   = '<span class="badge bg-success">0.00</span>';
+          btn.textContent = 'تم التحصيل';
+        } else {
+          btn.disabled = false;
+        }
+      });
+    });
+</script>

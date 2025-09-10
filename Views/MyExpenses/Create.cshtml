@@ -1,58 +1,232 @@
 ﻿@model GovFinance.Models.Expense
+@using GovFinance.Models
+@using System.Globalization
 
 @{
-    ViewData["Title"] = "Create";
-    TempData["Toast"] = "تم الحفظ بنجاح";
-
+    ViewData["Title"] = "إضافة مصروف";
+    var baseExpenses = ViewBag.BaseExpenses as IEnumerable<GovFinance.Models.ExpenseCategory>
+                      ?? Enumerable.Empty<GovFinance.Models.ExpenseCategory>();
 }
 
-<h1>Create</h1>
+<h1 class="h4 mb-3">إضافة مصروف</h1>
 
-<h4>Expense</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" method="post" asp-antiforgery="true">
+    <div class="col-md-6">
+        <form asp-action="Create" method="post">
             @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div asp-validation-summary="All" class="text-danger"></div>
+            <!-- مصروف أساسي (يملأ الحقول تلقائيًا) -->
+            <div class="mb-3">
+                <label class="form-label">مصروف أساسي</label>
+                <div class="input-group">
+                    <select id="baseExpenseSelect" class="form-select">
+                        <option value="">— إافتراضي —</option>
+                        @foreach (var bi in baseExpenses)
+                        {
+                         
+                            <option value="@bi.Id"
+                                    data-amount="@bi.DefaultAmount"
+                                    data-name="@bi.Name"
+                                >
+                                @bi.Name (@bi.DefaultAmount.ToString("N2"))
+                            </option>
+                        }
+                    </select>
 
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label">المبلغ</label>
-                <input asp-for="Amount" class="form-control" type="number" step="0.01" />
+                    <!-- زر فتح المودال -->
+                    <button type="button" id="btnOpenCat" class="btn btn-outline-primary">
+                        إضافة مصدر ثابت
+                    </button>
+                </div>
+                <div class="form-text">اختيار مصروف أساسي يملأ المصدر والمبلغ تلقائيًا ويمنع تعديلهما.</div>
+            </div>
+
+            <!-- الحقول الفعلية -->
+            <div class="mb-3">
+                <label asp-for="Source" class="form-label">المصدر</label>
+                <input asp-for="Source" class="form-control" id="Source" />
+                <span asp-validation-for="Source" class="text-danger"></span>
+            </div>
+
+            <!-- المبلغ الكلي -->
+            <div class="mb-3">
+                <label asp-for="Amount" class="form-label">المبلغ</label>
+                <div class="btn-group flex-wrap gap-1 mb-2"
+                     data-amount-pad
+                     data-target="#Amount">
+                    <button type="button" class="btn btn-outline-success btn-sm" data-inc="50">+50</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-inc="100">+100</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-inc="250">+250</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-inc="500">+500</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" data-inc="1000">+1000</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-set="0">تصفير</button>
+                </div>
+                <input asp-for="Amount"
+                       class="form-control latin-digits"
+                       id="Amount"
+                       type="number" step="any" inputmode="decimal"
+                       lang="en" dir="ltr" />
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Category" class="control-label">النوع</label>
-                <input asp-for="Category" class="form-control" />
-                <span asp-validation-for="Category" class="text-danger"></span>
+            <!-- الباقي (غير مقبوض) -->
+            <div class="mb-3">
+                <label for="Remaining" class="form-label">الباقي</label>
+                <div class="btn-group flex-wrap gap-1 mb-2"
+                     data-amount-pad
+                     data-target="#Remaining"
+                     data-min="0">
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-inc="50">+50</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-inc="100">+100</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-inc="250">+250</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-inc="500">+500</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-inc="1000">+1000</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-set="0">تصفير</button>
+                </div>
+                <input id="Remaining" name="Remaining"
+                       class="form-control latin-digits"
+                       type="number" step="any" min="0"
+                       inputmode="decimal" lang="en" dir="ltr" value="0" />
+                <div class="form-text">سيُحتسب “المدفوع الآن” تلقائيًا = المبلغ − الباقي.</div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Date" class="control-label">التاريخ</label>
+            <!-- المدفوع الآن (يُحتسب تلقائيًا، للقراءة فقط لكن يُرسل) -->
+            <div class="mb-3">
+                <label asp-for="PaidAmount" class="form-label">المدفوع الآن</label>
+                <input asp-for="PaidAmount"
+                       class="form-control latin-digits"
+                       id="PaidAmount"
+                       type="number" step="any" inputmode="decimal"
+                       lang="en" dir="ltr" readonly />
+                <span asp-validation-for="PaidAmount" class="text-danger"></span>
+            </div>
+
+            <!-- خزن الفئة المختارة -->
+            <input type="hidden" asp-for="ExpenseCategoryId" id="ExpenseCategoryId" />
+
+            <div class="mb-3">
+                <label asp-for="Date" class="form-label">التاريخ</label>
                 <input asp-for="Date" class="form-control" type="date" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Notes" class="control-label">ملاحظات</label>
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">ملاحظات</label>
                 <input asp-for="Notes" class="form-control" />
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
 
-            <div class="form-group mt-2">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a asp-action="Index" class="btn btn-secondary ms-2">العودة إلى القائمة</a>
-            </div>
+            <button type="submit" class="btn btn-primary">حفظ</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">رجوع</a>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">العودة إلى القائمة</a>
+<!-- مودال إضافة مصدر ثابت -->
+<div class="modal fade" id="catModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content content-card">
+            <div class="modal-header">
+                <h5 class="modal-title">إضافة مصدر ثابت</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+            <div id="catModalBody" class="modal-body"><div class="text-center py-3">...</div></div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(function () {
+          var $modal = $('#catModal');
+          var $body  = $('#catModalBody');
+          var $sel   = $('#baseExpenseSelect');
+          var modal  = new bootstrap.Modal($modal[0]);
+
+          // افتح المودال وحمّل الـPartial
+          $('#btnOpenCat').on('click', function () {
+            $body.html('<div class="text-center py-3">جارٍ التحميل…</div>');
+            $body.load('/ExpenseCategories/Create?asPartial=true', function () {
+              modal.show();
+            });
+          });
+
+          // إرسال نموذج المودال عبر AJAX (تفويض أحداث)
+          $body.on('submit', 'form[data-modal-form]', function (e) {
+            e.preventDefault();
+            var $form = $(this);
+            $.ajax({
+              url:  $form.attr('action'),
+              type: 'POST',
+              data: $form.serialize()
+            }).done(function (res, status, xhr) {
+              var ct = xhr.getResponseHeader('content-type') || '';
+              if (ct.indexOf('application/json') !== -1 && res.ok) {
+                // أضف المصدر للقائمة واختره
+                var text = res.name + ' (' + Number(res.amount).toFixed(2) + ')';
+                var $opt = $('<option>')
+                  .val(res.id)
+                  .attr('data-name', res.name)
+                  .attr('data-amount', res.amount)
+                  .text(text);
+                $sel.append($opt).val(String(res.id)).trigger('change');
+                modal.hide();
+              } else {
+                // رجع HTML بأخطاء تحقق -> أعِد عرضه داخل المودال
+                $body.html(res);
+              }
+            });
+          });
+
+          // عند اختيار مصدر ثابت: املأ الحقول وأغلق تعديلها
+          var $src = $('#Source'), $amt = $('#Amount'), $rem = $('#Remaining'), $col = $('#PaidAmount'), $hid = $('#ExpenseCategoryId');
+
+          function lock(locked){ $src.prop('readonly', locked); $amt.prop('readonly', locked); }
+
+          function normDigits(s){
+            if (s == null) return '';
+            s = String(s)
+              .replace(/[\u0660-\u0669]/g, d => '0123456789'[d.charCodeAt(0)-0x0660])
+              .replace(/[\u06F0-\u06F9]/g, d => '0123456789'[d.charCodeAt(0)-0x06F0])
+              .replace(/[،٬]/g,'').replace(/[٫]/g,'.');
+            return s;
+          }
+          function toNum(v){ v = normDigits(v).replace(/[^\d.\-]/g,''); var n = parseFloat(v); return isFinite(n)?n:0; }
+          function recalc(late){
+            var A = toNum($amt.val()), R = toNum($rem.val());
+            if(late){ if(R<0)R=0; if(R>A)R=A; $rem.val(Number.isInteger(R)? String(R): R.toFixed(2)); }
+            var C = Math.max(0, A - R);
+            $col.val(Number.isInteger(C)? String(C): C.toFixed(2));
+          }
+
+          $sel.on('change', function () {
+            var $opt = $(this).find(':selected');
+            if (!$opt.val()){
+              $hid.val(''); lock(false); return;
+            }
+            var name = $opt.data('name') || '';
+            var amt  = parseFloat(String($opt.data('amount')).replace(',', '.')) || 0;
+            $hid.val($opt.val());
+            $src.val(name);
+            $amt.val(amt.toFixed(2));
+            $rem.val('0.00');
+            lock(true);
+            recalc(true);
+          });
+
+          $amt.on('input', function(){ recalc(false); });
+          $rem.on('input', function(){ recalc(false); });
+          $amt.on('blur',  function(){
+            var A = toNum($amt.val());
+            $amt.val(Number.isInteger(A)? String(A): A.toFixed(2));
+            recalc(true);
+          });
+          $rem.on('blur',  function(){ recalc(true); });
+
+          recalc(true);
+        });
+    </script>
+
 }

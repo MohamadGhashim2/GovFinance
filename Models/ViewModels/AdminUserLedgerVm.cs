@@ -1,10 +1,10 @@
 ﻿namespace GovFinance.Models.ViewModels
 {
-    public class AdminCitizenLedgerVm
+    public class AdminUserLedgerVm
     {
-        // Citizen info
-        public int CitizenId { get; set; }
-        public string? NationalId { get; set; }
+        // User info
+        public int Id { get; set; }
+        public string? UserId { get; set; }
         public string? FullName { get; set; }
         public string? Email { get; set; }
 

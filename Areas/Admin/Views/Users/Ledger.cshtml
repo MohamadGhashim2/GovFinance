@@ -1,4 +1,4 @@
-﻿@model GovFinance.Models.ViewModels.AdminCitizenLedgerVm
+﻿@model GovFinance.Models.ViewModels.AdminUserLedgerVm
 @{
     ViewData["Title"] = "كشف حساب المواطن";
 }
@@ -8,13 +8,13 @@
 <div class="card mb-3">
     <div class="card-body">
         <div><strong>الاسم:</strong> @Model.FullName</div>
-        <div><strong>الرقم الوطني:</strong> @Model.NationalId</div>
+        <div><strong>الرقم الوطني:</strong> @Model.UserId</div>
         <div><strong>الإيميل:</strong> @Model.Email</div>
     </div>
 </div>
 
 <form method="get" class="row g-2 mb-3">
-    <input type="hidden" name="id" value="@Model.CitizenId" />
+    <input type="hidden" name="id" value="@Model.UserId" />
     <div class="col-auto">
         <label class="form-label">من تاريخ</label>
         <input type="date" class="form-control" name="start" value="@Model.Start" />
@@ -25,10 +25,10 @@
     </div>
     <div class="col-auto align-self-end">
         <button class="btn btn-primary">تصفية</button>
-        <a class="btn btn-outline-secondary" href="@Url.Action("Ledger", new { id = Model.CitizenId })">إعادة ضبط</a>
-        <a class="btn btn-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.CitizenId, start = Model.Start, end = Model.End, type = "all" })">تصدير CSV (الكل)</a>
-        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.CitizenId, start = Model.Start, end = Model.End, type = "incomes" })">CSV دخل</a>
-        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.CitizenId, start = Model.Start, end = Model.End, type = "expenses" })">CSV مصروف</a>
+        <a class="btn btn-outline-secondary" href="@Url.Action("Ledger", new { id = Model.UserId })">إعادة ضبط</a>
+        <a class="btn btn-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "all" })">تصدير CSV (الكل)</a>
+        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "incomes" })">CSV دخل</a>
+        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "expenses" })">CSV مصروف</a>
     </div>
 </form>
 
@@ -98,7 +98,7 @@
             <tr>
                 <td>@e.Date.ToString("yyyy-MM-dd")</td>
                 <td>@e.Amount.ToString("0.00")</td>
-                <td>@e.Category</td>
+                
                 <td>@e.Notes</td>
             </tr>
         }
