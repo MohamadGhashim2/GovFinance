@@ -32,10 +32,12 @@ namespace GovFinance.Controllers
             if (uid == null) return Forbid();
 
             var items = await _db.Expenses
-                .Where(i => i.UserId == uid)
-                .OrderByDescending(i => i.Date)
-                .AsNoTracking()
-                .ToListAsync();
+     .Where(e => e.UserId == uid)
+     .Include(e => e.ExpenseCategory)
+     .OrderByDescending(e => e.Date)
+     .AsNoTracking()
+     .ToListAsync();
+
 
             var today = DateOnly.FromDateTime(DateTime.Today);
             var firstOfMonth = new DateOnly(today.Year, today.Month, 1);

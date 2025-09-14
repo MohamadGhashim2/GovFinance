@@ -103,6 +103,87 @@ namespace GovFinance.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        // ====== EDIT (GET) ======
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id, bool asPartial = false, string? returnUrl = null)
+        {
+            var uid = await GetUserIdAsync();
+            if (uid == null) return Forbid();
+
+            var model = await _db.ExpenseCategories
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id && x.UserId == uid);
+
+            if (model == null) return NotFound();
+
+            ViewBag.ReturnUrl = string.IsNullOrWhiteSpace(returnUrl) ? null : returnUrl;
+
+            if (asPartial)
+                return PartialView("_EditForm", model); // فورم فقط للمودال
+
+            return View(model); // صفحة كاملة
+        }
+
+        // ====== EDIT (POST) ======
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, ExpenseCategory model, bool asPartial = false, string? returnUrl = null)
+        {
+            var uid = await GetUserIdAsync();
+            if (uid == null) return Forbid();
+            if (id != model.Id) return BadRequest();
+
+            ModelState.Remove(nameof(ExpenseCategory.User));
+
+            if (string.IsNullOrWhiteSpace(model.Name))
+                ModelState.AddModelError(nameof(model.Name), "الاسم مطلوب.");
+            if (model.DefaultAmount < 0)
+                ModelState.AddModelError(nameof(model.DefaultAmount), "المبلغ الافتراضي يجب أن يكون موجبًا.");
+
+            // منع التكرار لنفس المستخدم
+            if (ModelState.IsValid)
+            {
+                var duplicate = await _db.ExpenseCategories
+                    .AnyAsync(x => x.UserId == uid && x.Id != model.Id && x.Name == model.Name.Trim());
+                if (duplicate)
+                    ModelState.AddModelError(nameof(model.Name), "هذا الاسم موجود مسبقًا.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ReturnUrl = string.IsNullOrWhiteSpace(returnUrl) ? null : returnUrl;
+                if (asPartial) return PartialView("_EditForm", model);
+                return View(model);
+            }
+
+            var entity = await _db.ExpenseCategories
+                .FirstOrDefaultAsync(x => x.Id == id && x.UserId == uid);
+            if (entity == null) return NotFound();
+
+            // نستخدم معاملة لضمان الذرّية
+            await using var tx = await _db.Database.BeginTransactionAsync();
+
+            entity.Name = model.Name.Trim();
+            entity.DefaultAmount = model.DefaultAmount;
+            await _db.SaveChangesAsync();
+
+           
+            await _db.Expenses
+                .Where(e => e.UserId == uid && e.ExpenseCategoryId == entity.Id)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(e => e.Source, entity.Name));
+
+          
+
+            await tx.CommitAsync();
+
+            if (asPartial)
+                return Json(new { ok = true, id = entity.Id, name = entity.Name, amount = entity.DefaultAmount });
+
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+                return LocalRedirect(returnUrl);
+
+            return RedirectToAction(nameof(Index));
+        }
 
         // (اختياري) حذف بسيط
         [HttpPost]

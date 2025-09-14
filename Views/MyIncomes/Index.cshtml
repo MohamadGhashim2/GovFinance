@@ -47,6 +47,7 @@
     <table id="incomesTable" class="table table-hover align-middle">
         <thead>
             <tr>
+                                <th>ID</th>
                 <th>المصدر</th>
                 <th class="text-end">المبلغ</th>
                 <th class="text-end">المقبوض</th>
@@ -61,6 +62,8 @@
             {
                 var outstanding = item.Amount - item.CollectedAmount;
                 <tr>
+                    <td class="text-muted small latin-digits" data-order="@item.Id">@item.Id</td>
+
                     <td>@item.Source</td>
 
                     <!-- استخدم data-order بقيمة رقمية خام للفرز الصحيح -->

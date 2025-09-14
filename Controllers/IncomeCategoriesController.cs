@@ -64,7 +64,6 @@ namespace GovFinance.Controllers
             var cid = await GetUserIdAsync();
             if (cid == null) return Forbid();
 
-            // اربط بالمواطن الحالي
             model.UserId = cid.Value;
 
             ModelState.Remove(nameof(IncomeCategory.User));
@@ -110,6 +109,83 @@ namespace GovFinance.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id, bool asPartial = false, string? returnUrl = null)
+        {
+            var cid = await GetUserIdAsync();
+            if (cid == null) return Forbid();
+
+            var item = await _db.IncomeCategories
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id && x.UserId == cid);
+            if (item == null) return NotFound();
+
+            ViewBag.ReturnUrl = string.IsNullOrWhiteSpace(returnUrl) ? null : returnUrl;
+
+            if (asPartial)
+                return PartialView("_EditForm", item); // يرجّع الفورم فقط (للمودال)
+
+            return View(item); // الصفحة الكاملة
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, IncomeCategory model, bool asPartial = false, string? returnUrl = null)
+        {
+            var cid = await GetUserIdAsync();
+            if (cid == null) return Forbid();
+            if (id != model.Id) return BadRequest();
+
+            ModelState.Remove(nameof(IncomeCategory.User));
+
+            if (string.IsNullOrWhiteSpace(model.Name))
+                ModelState.AddModelError(nameof(model.Name), "الاسم مطلوب.");
+            if (model.DefaultAmount < 0)
+                ModelState.AddModelError(nameof(model.DefaultAmount), "المبلغ الافتراضي يجب أن يكون موجبًا.");
+
+            if (ModelState.IsValid)
+            {
+                var duplicate = await _db.IncomeCategories
+                    .AnyAsync(x => x.UserId == cid && x.Id != model.Id && x.Name == model.Name.Trim());
+                if (duplicate)
+                    ModelState.AddModelError(nameof(model.Name), "هذا الاسم موجود مسبقًا.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ReturnUrl = string.IsNullOrWhiteSpace(returnUrl) ? null : returnUrl;
+                if (asPartial) return PartialView("_EditForm", model);
+                return View(model);
+            }
+
+            var entity = await _db.IncomeCategories
+                .FirstOrDefaultAsync(x => x.Id == id && x.UserId == cid);
+            if (entity == null) return NotFound();
+
+            // نستخدم معاملة لضمان الذرّية
+            await using var tx = await _db.Database.BeginTransactionAsync();
+
+            entity.Name = model.Name.Trim();
+            entity.DefaultAmount = model.DefaultAmount;
+            await _db.SaveChangesAsync();
+
+            // هنا التحديث الجماعي لكل الدخل المرتبط بهذه الفئة:
+            await _db.Incomes
+                .Where(i => i.UserId == cid && i.IncomeCategoryId == entity.Id)
+                .ExecuteUpdateAsync(setters => setters.SetProperty(i => i.Source, entity.Name));
+
+            await tx.CommitAsync();
+
+            if (asPartial)
+                return Json(new { ok = true, id = entity.Id, name = entity.Name, amount = entity.DefaultAmount });
+
+            if (!string.IsNullOrWhiteSpace(returnUrl))
+                return LocalRedirect(returnUrl);
+
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // (اختياري) حذف بسيط
         [HttpPost]

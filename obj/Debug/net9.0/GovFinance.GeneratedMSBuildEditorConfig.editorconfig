@@ -92,12 +92,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZUNhdGVnb3JpZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/ExpenseCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZUNhdGVnb3JpZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/ExpenseCategories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZUNhdGVnb3JpZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/ExpenseCategories/_CreateForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZUNhdGVnb3JpZXNcX0NyZWF0ZUZvcm0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/ExpenseCategories/_EditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXhwZW5zZUNhdGVnb3JpZXNcX0VkaXRGb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/Home/Accessibility.cshtml]
@@ -120,12 +128,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lQ2F0ZWdvcmllc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/IncomeCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lQ2F0ZWdvcmllc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/IncomeCategories/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/IncomeCategories/_CreateForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lQ2F0ZWdvcmllc1xfQ3JlYXRlRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/IncomeCategories/_EditForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5jb21lQ2F0ZWdvcmllc1xfRWRpdEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Mostafa Ghashim/source/repos/GovFinance/Views/MyExpenses/Create.cshtml]

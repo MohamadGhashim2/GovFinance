@@ -1,0 +1,53 @@
+﻿@model GovFinance.Models.IncomeCategory
+@{
+    var returnUrl = ViewBag.ReturnUrl as string;
+}
+
+<form asp-area=""
+      asp-controller="IncomeCategories"
+      asp-action="Edit"
+      asp-route-id="@Model.Id"
+      method="post"
+      data-modal-form="1">
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="asPartial" value="true" />
+    <input type="hidden" name="returnUrl" value="@returnUrl" />
+    <input type="hidden" asp-for="Id" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">الاسم</label>
+        <input asp-for="Name" class="form-control" maxlength="100" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-2">
+        <label asp-for="DefaultAmount" class="form-label">المبلغ الافتراضي</label>
+
+        <!-- أزرار سريعة -->
+        <div class="btn-group flex-wrap gap-1 mb-2"
+             data-amount-pad
+             data-target="#DefaultAmount"
+             data-min="0">
+            <button type="button" class="btn btn-outline-success btn-sm" data-inc="50">+50</button>
+            <button type="button" class="btn btn-outline-success btn-sm" data-inc="100">+100</button>
+            <button type="button" class="btn btn-outline-success btn-sm" data-inc="250">+250</button>
+            <button type="button" class="btn btn-outline-success btn-sm" data-inc="500">+500</button>
+            <button type="button" class="btn btn-outline-success btn-sm" data-inc="1000">+1000</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-set="0">تصفير</button>
+        </div>
+
+        <input asp-for="DefaultAmount"
+               id="DefaultAmount"
+               class="form-control latin-digits"
+               type="number" step="any" min="0" inputmode="decimal" lang="en" />
+        <span asp-validation-for="DefaultAmount" class="text-danger"></span>
+    </div>
+
+    <div class="text-end mt-3">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="submit" class="btn btn-primary">حفظ</button>
+    </div>
+</form>

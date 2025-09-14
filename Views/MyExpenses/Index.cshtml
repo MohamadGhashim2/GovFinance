@@ -46,6 +46,7 @@
     <table id="expensesTable" class="table table-hover align-middle">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>المصدر</th>
                 <th class="text-end">المبلغ</th>
                 <th class="text-end">المدفوع</th>
@@ -60,6 +61,9 @@
             {
                 var outstanding = item.Amount - item.PaidAmount;
                 <tr>
+                    <!-- ID -->
+                    <td class="text-muted small latin-digits" data-order="@item.Id">@item.Id</td>
+
                     <td>@item.Source</td>
 
                     <td class="text-end" data-order="@item.Amount">@item.Amount.ToString("N2")</td>
@@ -95,6 +99,7 @@
                             </button>
                         </form>
                     </td>
+
                 </tr>
             }
         </tbody>
@@ -113,7 +118,7 @@
                 deferRender: true,
                 pageLength: pageLen,
                 lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'الكل']],
-                order: [[4, 'desc']], // التاريخ
+                order: [[5, 'desc']], // التاريخ (بعد إضافة عمود الـ ID صار فهرسه 5)
                 language: {
                     search: 'بحث:',
                     lengthMenu: 'عرض _MENU_',

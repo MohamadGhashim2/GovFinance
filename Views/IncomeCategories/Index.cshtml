@@ -13,6 +13,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th>ID</th>
+
             <th>الاسم</th>
             <th>المبلغ الافتراضي</th>
             <th style="width:120px;"></th>
@@ -22,6 +24,8 @@
         @foreach (var x in Model)
         {
             <tr>
+                <td class="text-muted small" data-order="@x.Id">@x.Id</td>
+
                 <td>@x.Name</td>
                 <td>@x.DefaultAmount.ToString("N2")</td>
                 <td class="text-end">
@@ -29,8 +33,82 @@
                         <input type="hidden" name="id" value="@x.Id" />
                         <button class="btn btn-sm btn-outline-danger">حذف</button>
                     </form>
+                    <button type="button"
+                            class="btn btn-sm btn-outline-secondary"
+                            data-edit-cat
+                            data-id="@x.Id">
+                        تعديل
+                    </button>
+
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<div class="modal fade" id="catEditModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content content-card">
+            <div class="modal-header">
+                <h5 class="modal-title">تعديل مصدر دخل</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+            </div>
+            <div id="catEditModalBody" class="modal-body"><div class="text-center py-3">...</div></div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        (function(){
+          const modalEl = document.getElementById('catEditModal');
+          const bodyEl  = document.getElementById('catEditModalBody');
+          const modal   = modalEl ? new bootstrap.Modal(modalEl) : null;
+
+          document.addEventListener('click', async (e) => {
+            const btn = e.target.closest('[data-edit-cat]');
+            if (!btn || !modal) return;
+
+            const id = btn.getAttribute('data-id');
+            bodyEl.innerHTML = '<div class="text-center py-3">جارٍ التحميل…</div>';
+
+            const res = await fetch(`/IncomeCategories/Edit/${id}?asPartial=true`, {
+              headers: { 'X-Requested-With': 'XMLHttpRequest' },
+              credentials: 'include'
+            });
+            bodyEl.innerHTML = await res.text();
+
+            // إعادة تفعيل unobtrusive validation داخل المودال إن وجدت
+            if (window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive) {
+              window.jQuery.validator.unobtrusive.parse(bodyEl);
+            }
+
+            // إعادة ربط submit داخل المودال (نفس أسلوب _CreateForm)
+            const form = bodyEl.querySelector('form[data-modal-form]');
+            if (form) {
+              form.addEventListener('submit', async (ev) => {
+                ev.preventDefault();
+                const fd  = new FormData(form);
+                const res = await fetch(form.action + (form.action.includes('?') ? '' : '') , {
+                  method: 'POST',
+                  body: fd,
+                  headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                  credentials: 'include'
+                });
+                const ct = res.headers.get('content-type') || '';
+                if (ct.includes('application/json')) {
+                  const data = await res.json();
+                  if (data.ok) {
+                    // هنا ممكن تحدّث الصف في الجدول حسب احتياجك…
+                    modal.hide();
+                    location.reload(); // أبسط حل
+                    return;
+                  }
+                }
+                bodyEl.innerHTML = await res.text(); // أخطاء تحقق
+              });
+            }
+
+            modal.show();
+          });
+        })();
+    </script>
+}
