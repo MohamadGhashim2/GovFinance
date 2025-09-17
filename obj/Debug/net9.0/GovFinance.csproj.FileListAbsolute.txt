@@ -282,7 +282,6 @@ C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebasset
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\GovFinance.csproj.Up2Date
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\GovFinance.dll
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\refint\GovFinance.dll
@@ -435,4 +434,5 @@ C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\runtimes\win-x
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\compressed\mnpv7iq7m1-4bz1de9k9v.gz
 C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\compressed\l5dugmrba0-x2kncj75fm.gz
-C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\compressed\k72pyonc32-986ks09e2k.gz
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\compressed\k72pyonc32-kmfqm9f3p5.gz
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

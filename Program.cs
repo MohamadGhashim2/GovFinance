@@ -31,14 +31,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
-//var culture = new CultureInfo("ar-SY"); // أو ar-SA حسب عملتك
-//var opts = new RequestLocalizationOptions
-//{
-//    DefaultRequestCulture = new RequestCulture(culture),
-//    SupportedCultures = new[] { culture },
-//    SupportedUICultures = new[] { culture }
-//};
-//app.UseRequestLocalization(opts);
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -55,10 +48,12 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
+
 app.UseRouting();
 
 
 app.UseAuthentication();
+
 
 if (app.Environment.IsDevelopment())
 {
@@ -112,7 +107,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}"
 ).WithStaticAssets();
 
+
 app.MapRazorPages().WithStaticAssets();
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;

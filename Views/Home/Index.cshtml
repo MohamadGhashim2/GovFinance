@@ -112,18 +112,13 @@
                                 <option value="expense">مصروف</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="form-label mb-1">بحث</label>
-                            <input id="searchAll" class="form-control form-control-sm" placeholder="ابحث في كل الأعمدة…" />
-                        </div>
+                        
                     </div>
                 </div>
             </div>
 
             <div class="card-body p-0">
-                <div class="p-2">
-                    <input id="quickFilter" class="form-control form-control-sm" placeholder="فلترة فورية داخل الجدول…" />
-                </div>
+               
 
                 <div class="table-responsive">
                     <table id="lastEntriesTable" class="table table-hover mb-0 align-middle">
@@ -173,29 +168,29 @@
         @section Scripts {
             <script>
                 $(function () {
-                  var pageLen = @((ViewBag.Take ?? 10)); // قيمة ابتدائية، ممكن تغيّرها من السيرفر
+                  var pageLen = @((ViewBag.Take ?? 10)); 
 
                   var table = $('#lastEntriesTable').DataTable({
                     pageLength: pageLen,
-                    order: [[5, 'desc']],               // ترتيب حسب التاريخ (العمود السادس)
+                    order: [[5, 'desc']],               
                     lengthMenu: [[5,10,20,50,100],[5,10,20,50,100]],
-                    language: {                          // تعريب كامل
+                    language: {                         
                       url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/ar.json'
                     }
                   });
 
-                  // بحث عام
+                
                   $('#searchAll').on('keyup', function () {
                     table.search(this.value).draw();
                   });
 
-                  // فلترة النوع (العمود 0 فيه "دخل"/"مصروف")
+               
                   $('#typeFilter').on('change', function () {
                     var v = this.value;
                     if (v === 'all') {
                       table.column(0).search('').draw();
                     } else if (v === 'income') {
-                      table.column(0).search('^دخل$', true, false).draw();      // مطابقة تامة
+                      table.column(0).search('^دخل$', true, false).draw();     
                     } else {
                       table.column(0).search('^مصروف$', true, false).draw();
                     }

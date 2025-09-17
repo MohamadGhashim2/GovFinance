@@ -109,7 +109,6 @@
 @section Scripts {
     <script>
         (function () {
-            // إذا تبي تقرأ طول الصفحة من الكويري (?len=20) اختياري:
             const params = new URLSearchParams(location.search);
             const len = parseInt(params.get('len') || '10', 10);
             const pageLen = (isFinite(len) && len > 0) ? len : 10;
@@ -119,7 +118,7 @@
                 deferRender: true,
                 pageLength: pageLen,
                 lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'الكل']],
-                order: [[4, 'desc']], // عمود التاريخ (الصفر-based index)
+                order: [[4, 'desc']], 
                 language: {
                     search: 'بحث:',
                     lengthMenu: 'عرض _MENU_',

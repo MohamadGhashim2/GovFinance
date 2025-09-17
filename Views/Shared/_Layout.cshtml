@@ -32,183 +32,182 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
 
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/govfinance_logo-trans2.png" alt="GovFinance" class="brand-logo" />
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/govfinance_logo-trans2.png" alt="GovFinance" class="brand-logo" />
 
-                    <span class="visually-hidden">GovFinance</span>
-                </a>
+                        <span class="visually-hidden">GovFinance</span>
+                    </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <div class="dropdown me-2">
-                        <button class="btn btn-currency  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            @Currency.Symbol @Currency.Code
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="TRY" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">₺ TRY — ليرة تركية</a></li>
-                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="USD" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">$ USD — دولار</a></li>
-                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SAR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">﷼ SAR — ريال سعودي</a></li>
-                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="EUR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">€ EUR — يورو</a></li>
-                            <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SYP" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">SYP SYP — ليرة سورية</a></li>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <div class="dropdown me-2">
+                            <button class="btn btn-currency  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                @Currency.Symbol @Currency.Code
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="TRY" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">₺ TRY — ليرة تركية</a></li>
+                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="USD" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">$ USD — دولار</a></li>
+                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SAR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">﷼ SAR — ريال سعودي</a></li>
+                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="EUR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">€ EUR — يورو</a></li>
+                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SYP" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">SYP SYP — ليرة سورية</a></li>
 
-                        </ul>
-                    </div>
-                    <ul class="navbar-nav flex-grow-1">
+                            </ul>
+                        </div>
+                        <ul class="navbar-nav flex-grow-1">
 
 
-                        @if (User?.Identity?.IsAuthenticated ?? false)
-                        {
-                            if (User.IsInRole(Roles.Admin))
+                            @if (User?.Identity?.IsAuthenticated ?? false)
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark"
-                                       asp-area="Admin" asp-controller="Incomes" asp-action="Index">
-                                        مدخلات المستخدمين
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark"
-                                       asp-area="Admin" asp-controller="Expenses" asp-action="Index">
-                                        مخرجات جميع المستخدمين
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark"
-                                       asp-area="Admin" asp-controller="Users" asp-action="Index">
-                                        المستخدمون
-                                    </a>
-                                </li>
-                            }
-                            else if (User.IsInRole(Roles.User))
-                            {
-                                <!-- المدخولات + منسدلة -->
-                                <li class="nav-item dropdown">
-                                    <!-- الرابط الرئيسي يذهب لصفحة المدخولات -->
-                                    <a class="nav-link" asp-area="" asp-controller="MyIncomes" asp-action="Index">
-                                        المدخولات
-                                    </a>
+                                if (User.IsInRole(Roles.Admin))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark"
+                                           asp-area="Admin" asp-controller="Incomes" asp-action="Index">
+                                            مدخلات المستخدمين
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark"
+                                           asp-area="Admin" asp-controller="Expenses" asp-action="Index">
+                                            مخرجات جميع المستخدمين
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark"
+                                           asp-area="Admin" asp-controller="Users" asp-action="Index">
+                                            المستخدمون
+                                        </a>
+                                    </li>
+                                }
+                                else if (User.IsInRole(Roles.User))
+                                {
+                                    <!-- المدخولات + منسدلة -->
+                                    <li class="nav-item dropdown">
+                                        <!-- الرابط الرئيسي يذهب لصفحة المدخولات -->
+                                        <a class="nav-link" asp-area="" asp-controller="MyIncomes" asp-action="Index">
+                                            المدخولات
+                                        </a>
 
-                                    <!-- زر فتح المنسدلة للموبايل فقط -->
-                                    <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
-                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                                            aria-label="قائمة المدخولات"></button>
+                                        <!-- زر فتح المنسدلة للموبايل فقط -->
+                                        <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-label="قائمة المدخولات">
+                                        </button>
 
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="MyIncomes" asp-action="Deferred">
-                                                المدخولات المؤجلة
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="IncomeCategories" asp-action="Index">
-                                                مصادر الدخل الأساسية
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item" asp-area="" asp-controller="MyIncomes" asp-action="Deferred">
+                                                    المدخولات المؤجلة
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" asp-area="" asp-controller="IncomeCategories" asp-action="Index">
+                                                    مصادر الدخل الأساسية
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
-                                <!-- المصاريف + منسدلة -->
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" asp-area="" asp-controller="MyExpenses" asp-action="Index">
-                                        المصاريف
-                                    </a>
+                                    <!-- المصاريف + منسدلة -->
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" asp-area="" asp-controller="MyExpenses" asp-action="Index">
+                                            المصاريف
+                                        </a>
 
-                                    <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
-                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"
-                                            aria-label="قائمة المصاريف"></button>
+                                        <button class="btn btn-link nav-link dropdown-toggle d-lg-none px-1"
+                                                type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                                aria-label="قائمة المصاريف">
+                                        </button>
 
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="MyExpenses" asp-action="Deferred">
-                                                المصاريف المؤجلة
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-area="" asp-controller="ExpenseCategories" asp-action="Index">
-                                                المصاريف الأساسية
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item" asp-area="" asp-controller="MyExpenses" asp-action="Deferred">
+                                                    المصاريف المؤجلة
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" asp-area="" asp-controller="ExpenseCategories" asp-action="Index">
+                                                    المصاريف الأساسية
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
 
                                 
+                                }
                             }
-                        }
 
 
-                    </ul>
-                    <div class="d-flex align-items-center gap-2">
-                        <button id="themeToggle" type="button" class="btn btn-sm btn-outline-secondary" title="تبديل الوضع">🌙</button>
-                        <partial name="_LoginPartial" />
+                        </ul>
+                        <div class="d-flex align-items-center gap-2">
+                            <button id="themeToggle" type="button" class="btn btn-sm btn-outline-secondary" title="تبديل الوضع">🌙</button>
+                            <partial name="_LoginPartial" />
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container my-4">
+            <div class="content-card content-halo p-md-4 main-wrap">
+                @RenderBody()
+            </div>
+        </div>
+
+        <footer class="border-top footer bg-white text-muted">
+            <div class="container py-3 small">
+                <div class="row align-items-center g-2">
+                    <div class="col-md">
+                        <span>&copy; @DateTime.UtcNow.Year  — جميع الحقوق محفوظة.</span>
+                        <span class="mx-1">|</span>
+                        <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
+                        <span class="mx-1">•</span>
+                        <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Terms">شروط الاستخدام</a>
+                        <span class="mx-1">•</span>
+                        <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Accessibility">سياسة الوصول الرقمي</a>
+                        <span class="mx-1">•</span>
+                        <a class="link-secondary" href="#">تواصل معنا</a>
                     </div>
 
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <div class="container my-4">
-        <div class="content-card content-halo p-md-4 main-wrap">
-            @RenderBody()
-        </div>
-    </div>
-
-    <footer class="border-top footer bg-white text-muted">
-        <div class="container py-3 small">
-            <div class="row align-items-center g-2">
-                <div class="col-md">
-                    <span>&copy; @DateTime.UtcNow.Year  — جميع الحقوق محفوظة.</span>
-                    <span class="mx-1">|</span>
-                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Privacy">سياسة الخصوصية</a>
-                    <span class="mx-1">•</span>
-                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Terms">شروط الاستخدام</a>
-                    <span class="mx-1">•</span>
-                    <a class="link-secondary" asp-area="" asp-controller="Home" asp-action="Accessibility">سياسة الوصول الرقمي</a>
-                    <span class="mx-1">•</span>
-                    <a class="link-secondary" href="#">تواصل معنا</a>
+                    <div class="col-md-auto text-md-start">
+                        <span>الإصدار @ver</span>
+                        <span class="mx-1">•</span>
+                        <span>@Env.EnvironmentName</span>
+                    </div>
                 </div>
 
-                <div class="col-md-auto text-md-start">
-                    <span>الإصدار @ver</span>
-                    <span class="mx-1">•</span>
-                    <span>@Env.EnvironmentName</span>
+
+            </div>
+        </footer>
+
+
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        \
+        @await RenderSectionAsync("Scripts", required: false)
+
+        @if (TempData["Toast"] is string msg)
+        {
+            <div class="toast align-items-center text-bg-success border-0 position-fixed bottom-0 start-0 m-3 show" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">@msg</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
                 </div>
             </div>
+        }
 
-
-        </div>
-    </footer>
-
-
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <link rel="stylesheet"
-          href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" />
-
-    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    \
-    @await RenderSectionAsync("Scripts", required: false)
-
-    @if (TempData["Toast"] is string msg)
-    {
-        <div class="toast align-items-center text-bg-success border-0 position-fixed bottom-0 start-0 m-3 show" role="alert">
-            <div class="d-flex">
-                <div class="toast-body">@msg</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-            </div>
-        </div>
-    }
-
-</body>
+    </body>
 </html>

@@ -1,13 +1,14 @@
 /* =======================
    Theme variables
    ======================= */
+
 :root {
-    --brand-bg: springgreen; /* صفحة (خارج الكارد) في الفاتح */
-    --brand-green: springgreen; /* اللون الأساسي */
-    --brand-green-2: #00e874; /* هوفر */
-    --text-color: #212529; /* لون النص العام */
-    --card-bg: #fff; /* خلفية الكروت/النافبار/الفوتر */
-    --card-border: rgba(0,0,0,.08); /* حدود ناعمة */
+    --brand-bg: #115c14;
+    --brand-green: springgreen;
+    --brand-green-2: #00e874;
+    --text-color: #212529;
+    --card-bg: #ecfbf3;
+    --card-border: rgba(0,0,0,.08);
 }
 
 /* Dark theme overrides */
@@ -16,7 +17,7 @@
     --brand-green: #16d86e;
     --brand-green-2: #12c25f;
     --text-color: #e9ecef;
-    --card-bg: #121212;
+    --card-bg: #000c06;
     --card-border: rgba(255,255,255,.12);
 }
 
@@ -31,11 +32,18 @@ html {
 
 body {
     height: 100%;
-    margin-bottom: 60px; /* مساحة الفوتر */
-    background: var(--brand-bg);
+    margin-bottom: 60px; 
+    background-image:
+    linear-gradient(rgba(0, 255, 127, 0.18), rgba(0, 255, 127, 0.18)), url('../img/background.jpg');
+    background-image: linear-gradient( color-mix(in srgb, var(--brand-bg) 35%, transparent), color-mix(in srgb, var(--brand-bg) 18%, transparent) ), url('../img/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     color: var(--text-color);
     font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }
+
 
 /* Focus ring موحّد */
 .btn:focus,
@@ -149,7 +157,7 @@ footer.footer {
             color: var(--bs-navbar-hover-color) !important;
         }
 
-/* أيقونة زر الهامبرغر حسب الثيم */
+/* أيقونة زر  حسب الثيم */
 [data-bs-theme="light"] .navbar {
     --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(33,37,41,0.85)' stroke-linecap='round' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
