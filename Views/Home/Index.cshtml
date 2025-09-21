@@ -28,9 +28,9 @@
         }
         else if (Model?.IsUser == true)
         {
-            <a class="btn btn-primary btn-lg me-2" asp-controller="MyIncomes" asp-action="Index">مدخولاتي</a>
-            <a class="btn btn-outline-primary btn-lg me-2" asp-controller="MyExpenses" asp-action="Index">مصاريفي</a>
-            <a class="btn btn-outline-secondary btn-lg" asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a>
+            <a class="btn btn-primary btn-lg m-1 " asp-controller="MyIncomes" asp-action="Index">مدخولاتي</a>
+            <a class="btn btn-primary btn-lg m-1" asp-controller="MyExpenses" asp-action="Index">مصاريفي</a>
+            <div class="m-1"><a class="btn btn-outline-danger " asp-area="Identity" asp-page="/Account/Logout">تسجيل الخروج</a></div>
         }
     }
     else

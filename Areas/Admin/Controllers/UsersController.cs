@@ -53,9 +53,9 @@ namespace GovFinance.Areas.Admin.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var c = await _db.Users.FindAsync(id);
+            var c = await _db.Userrs.FindAsync(id);
             if (c == null) return NotFound();
-            _db.Users.Remove(c);
+            _db.Userrs.Remove(c);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

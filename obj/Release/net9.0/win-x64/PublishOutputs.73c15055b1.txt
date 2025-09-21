@@ -1,0 +1,3 @@
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Release\net9.0\win-x64\publish\appsettings.Development.json
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Release\net9.0\win-x64\publish\appsettings.json
+C:\Users\Mostafa Ghashim\source\repos\GovFinance\bin\Release\net9.0\win-x64\publish\GovFinance.exe

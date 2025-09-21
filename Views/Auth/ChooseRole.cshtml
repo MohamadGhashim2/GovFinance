@@ -9,13 +9,20 @@
 
         <div class="row g-3 justify-content-center">
             
-            <div class="">
-                <a class="btn btn-lg btn-primary w-250"
+            <div class="mt-4">
+                <a class="btn btn-lg btn-primary w-75"
                    href="@Url.Page("/Account/Register", new { area = "Identity", role = Roles.User })">
                     مستخدم جديد
                 </a>
             </div>
-            
+            <div class="mt-4">
+                <a 
+                   class="btn btn-lg btn-outline-danger w-75"
+                   href='@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Admin })'
+                   aria-hidden="true">
+                    أدمن
+                </a>
+            </div>
         </div>
      
         <div class="mt-4">
@@ -24,14 +31,7 @@
             </a>
         </div>
 
-     @*    <div class="">
-            <a id="adminBtn"
-               class="btn btn-lg btn-outline-danger w-100 d-none"
-               href='@Url.Page("/Account/Register", new { area = "Identity", role = Roles.Admin })'
-               aria-hidden="true">
-                أدمن
-            </a>
-        </div> *@
+     
     </div>
 </div>
 

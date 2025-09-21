@@ -10,14 +10,15 @@
        asp-route-returnUrl="@Url.Action("Create", "MyIncomes")">إضافة مصدر أساسي</a>
 </div>
 
-<table class="table">
+<table class="table" id="expensesTable">
     <thead>
         <tr>
             <th>ID</th>
 
             <th>الاسم</th>
             <th>المبلغ الافتراضي</th>
-            <th style="width:120px;"></th>
+            <th style="width:60px;"></th>
+            <th style="width:60px;"></th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,8 @@
                         <input type="hidden" name="id" value="@x.Id" />
                         <button class="btn btn-sm btn-outline-danger">حذف</button>
                     </form>
+                </td>
+                <td class="text-end">
                     <button type="button"
                             class="btn btn-sm btn-outline-secondary"
                             data-edit-cat
@@ -109,6 +112,25 @@
 
             modal.show();
           });
+          const params = new URLSearchParams(location.search);
+            const len = parseInt(params.get('len') || '10', 10);
+            const pageLen = (isFinite(len) && len > 0) ? len : 10;
+
+            new DataTable('#expensesTable', {
+                responsive: true,
+                deferRender: true,
+                pageLength: pageLen,
+                lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'الكل']],
+                order: [[1, 'desc']],
+                language: {
+                    search: 'بحث:',
+                    lengthMenu: 'عرض _MENU_',
+                    info: 'إظهار _START_–_END_ من _TOTAL_',
+                    infoEmpty: 'لا توجد سجلات',
+                    zeroRecords: 'لا نتائج',
+                    paginate: { first: 'الأول', last: 'الأخير', next: 'التالي', previous: 'السابق' }
+                }
+            });
         })();
     </script>
 }

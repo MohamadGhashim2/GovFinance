@@ -8,13 +8,13 @@
 <div class="card mb-3">
     <div class="card-body">
         <div><strong>الاسم:</strong> @Model.FullName</div>
-        <div><strong>الرقم الوطني:</strong> @Model.UserId</div>
+        <div><strong>الرقم الوطني:</strong> @Model.Id</div>
         <div><strong>الإيميل:</strong> @Model.Email</div>
     </div>
 </div>
 
 <form method="get" class="row g-2 mb-3">
-    <input type="hidden" name="id" value="@Model.UserId" />
+    <input type="hidden" name="id" value="@Model.Id" />
     <div class="col-auto">
         <label class="form-label">من تاريخ</label>
         <input type="date" class="form-control" name="start" value="@Model.Start" />
@@ -25,10 +25,10 @@
     </div>
     <div class="col-auto align-self-end">
         <button class="btn btn-primary">تصفية</button>
-        <a class="btn btn-outline-secondary" href="@Url.Action("Ledger", new { id = Model.UserId })">إعادة ضبط</a>
-        <a class="btn btn-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "all" })">تصدير CSV (الكل)</a>
-        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "incomes" })">CSV دخل</a>
-        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.UserId, start = Model.Start, end = Model.End, type = "expenses" })">CSV مصروف</a>
+        <a class="btn btn-outline-secondary" href="@Url.Action("Ledger", new { id = Model.Id })">إعادة ضبط</a>
+        <a class="btn btn-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.Id, start = Model.Start, end = Model.End, type = "all" })">تصدير CSV (الكل)</a>
+        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.Id, start = Model.Start, end = Model.End, type = "incomes" })">CSV دخل</a>
+        <a class="btn btn-outline-success" href="@Url.Action("ExportLedgerCsv", new { id = Model.Id, start = Model.Start, end = Model.End, type = "expenses" })">CSV مصروف</a>
     </div>
 </form>
 
@@ -59,48 +59,151 @@
     </div>
 </div>
 
-<h4>الدخل</h4>
-<table class="table table-striped mb-4">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Source</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var i in Model.Incomes)
-        {
+<div class="table-responsive">
+    <h4>الدخل</h4>
+    <table id="expensesTable" class="table table-hover align-middle">
+        <thead>
             <tr>
-                <td>@i.Date.ToString("yyyy-MM-dd")</td>
-                <td>@i.Amount.ToString("0.00")</td>
-                <td>@i.Source</td>
-                <td>@i.Notes</td>
-            </tr>
-        }
-    </tbody>
-</table>
+                <th>ID</th>
+                <th>المصدر</th>
+                <th class="text-end">المبلغ</th>
+                <th class="text-end">المدفوع</th>
+                <th class="text-end">المتبقّي</th>
+                <th style="width:130px">التاريخ</th>
+                <th>ملاحظات</th>
 
-<h4>المصروف</h4>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Category</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var e in Model.Expenses)
-        {
-            <tr>
-                <td>@e.Date.ToString("yyyy-MM-dd")</td>
-                <td>@e.Amount.ToString("0.00")</td>
-                
-                <td>@e.Notes</td>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Incomes)
+            {
+                var outstanding = item.Amount - item.CollectedAmount;
+                <tr>
+                    <!-- ID -->
+                    <td class="text-muted small latin-digits" data-order="@item.Id">@item.Id</td>
+
+                    <td>@item.Source</td>
+
+                    <td class="text-end" data-order="@item.Amount">@item.Amount.ToString("N2")</td>
+                    <td class="text-end" data-order="@item.CollectedAmount">@item.CollectedAmount.ToString("N2")</td>
+
+                    <td class="text-end" data-order="@(outstanding)">
+                        @if (outstanding > 0)
+                        {
+                            <span class="badge bg-warning text-dark">@outstanding.ToString("N2")</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">0.00</span>
+                        }
+                    </td>
+
+                    <td data-order="@item.Date.ToString("yyyyMMdd")">
+                        @item.Date.ToString("yyyy-MM-dd")
+                    </td>
+
+                    <td class="text-truncate" style="max-width:260px;">
+                        @item.Notes
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="table-responsive">
+    <h4>المصروف</h4>
+    <table id="incomeTable" class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>المصدر</th>
+                <th class="text-end">المبلغ</th>
+                <th class="text-end">المدفوع</th>
+                <th class="text-end">المتبقّي</th>
+                <th style="width:130px">التاريخ</th>
+                <th>ملاحظات</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Expenses)
+            {
+                var outstanding = item.Amount - item.PaidAmount;
+                <tr>
+                    <!-- ID -->
+                    <td class="text-muted small latin-digits" data-order="@item.Id">@item.Id</td>
+
+                    <td>@item.Source</td>
+
+                    <td class="text-end" data-order="@item.Amount">@item.Amount.ToString("N2")</td>
+                    <td class="text-end" data-order="@item.PaidAmount">@item.PaidAmount.ToString("N2")</td>
+
+                    <td class="text-end" data-order="@(outstanding)">
+                        @if (outstanding > 0)
+                        {
+                            <span class="badge bg-warning text-dark">@outstanding.ToString("N2")</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">0.00</span>
+                        }
+                    </td>
+
+                    <td data-order="@item.Date.ToString("yyyyMMdd")">
+                        @item.Date.ToString("yyyy-MM-dd")
+                    </td>
+
+                    <td class="text-truncate" style="max-width:260px;">
+                        @item.Notes
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts {
+    <script>
+        (function () {
+            const params = new URLSearchParams(location.search);
+            const len = parseInt(params.get('len') || '10', 10);
+            const pageLen = (isFinite(len) && len > 0) ? len : 10;
+
+            new DataTable('#expensesTable', {
+                responsive: true,
+                deferRender: true,
+                pageLength: pageLen,
+                lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'الكل']],
+                order: [[5, 'desc']],
+                language: {
+                    search: 'بحث:',
+                    lengthMenu: 'عرض _MENU_',
+                    info: 'إظهار _START_–_END_ من _TOTAL_',
+                    infoEmpty: 'لا توجد سجلات',
+                    zeroRecords: 'لا نتائج',
+                    paginate: { first: 'الأول', last: 'الأخير', next: 'التالي', previous: 'السابق' }
+                }
+            });
+             new DataTable('#incomeTable', {
+                responsive: true,
+                deferRender: true,
+                pageLength: pageLen,
+                lengthMenu: [[10, 20, 50, 100, -1], [10, 20, 50, 100, 'الكل']],
+                order: [[5, 'desc']],
+                language: {
+                    search: 'بحث:',
+                    lengthMenu: 'عرض _MENU_',
+                    info: 'إظهار _START_–_END_ من _TOTAL_',
+                    infoEmpty: 'لا توجد سجلات',
+                    zeroRecords: 'لا نتائج',
+                    paginate: { first: 'الأول', last: 'الأخير', next: 'التالي', previous: 'السابق' }
+                }
+            });
+        })();
+    </script>
+}

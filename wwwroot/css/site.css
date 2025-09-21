@@ -7,7 +7,7 @@
     --brand-green: springgreen;
     --brand-green-2: #00e874;
     --text-color: #212529;
-    --card-bg: #ecfbf3;
+    --card-bg: #ecfbf3f5;
     --card-border: rgba(0,0,0,.08);
 }
 
@@ -17,7 +17,7 @@
     --brand-green: #16d86e;
     --brand-green-2: #12c25f;
     --text-color: #e9ecef;
-    --card-bg: #000c06;
+    --card-bg: #0a140ff5;
     --card-border: rgba(255,255,255,.12);
 }
 

@@ -46,21 +46,13 @@
                             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+               
 
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <div class="dropdown me-2">
-                            <button class="btn btn-currency  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                @Currency.Symbol @Currency.Code
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="TRY" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">₺ TRY — ليرة تركية</a></li>
-                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="USD" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">$ USD — دولار</a></li>
-                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SAR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">﷼ SAR — ريال سعودي</a></li>
-                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="EUR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">€ EUR — يورو</a></li>
-                                <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SYP" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">SYP SYP — ليرة سورية</a></li>
-
-                            </ul>
-                        </div>
+                      
+                     
+                    
+                       
                         <ul class="navbar-nav flex-grow-1">
 
 
@@ -89,6 +81,19 @@
                                 }
                                 else if (User.IsInRole(Roles.User))
                                 {
+                                <li class="dropdown me-2">
+                                    <button class="btn btn-currency  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @Currency.Symbol @Currency.Code
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                                        <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="TRY" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">₺ TRY — ليرة تركية</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="USD" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">$ USD — دولار</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SAR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">﷼ SAR — ريال سعودي</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="EUR" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">€ EUR — يورو</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Settings" asp-action="SetCurrency" asp-route-code="SYP" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">SYP SYP — ليرة سورية</a></li>
+
+                                    </ul>
+                                </li>  
                                     <!-- المدخولات + منسدلة -->
                                     <li class="nav-item dropdown">
                                         <!-- الرابط الرئيسي يذهب لصفحة المدخولات -->
